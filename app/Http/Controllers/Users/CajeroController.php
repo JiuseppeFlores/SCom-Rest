@@ -16,8 +16,8 @@ class CajeroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //$cajeros = Cajero::all();
+    {   
+        /*$clientes = Cliente::all();*/
         $cajeros = DB::table('usuario')
             ->join('cajero','usuario.ci','=','cajero.ci')
             ->get();
@@ -32,7 +32,29 @@ class CajeroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = new Usuario();
+        $usuario->ci = $request->ci;
+        $usuario->nombreUsuario = $request->nombreUsuario;
+        $usuario->contraseña = $request->contraseña;
+        $usuario->edad = $request->edad;
+        $usuario->nombre = $request->nombre;
+        $usuario->apellidoPaterno = $request->apellidoPaterno;
+        $usuario->apellidoMaterno = $request->apellidoMaterno;
+        $usuario->estado = $request->estado;
+        $usuario->save();
+
+        $cajero = new Cajero();
+        $cajero->ci = $request->ci;
+        $cajero->fechaContratacion = $request->fechaContratacion;
+        $cajero->salario = $request->salario;
+        $cajero->save();
+
+        $datos = DB::table('usuario')
+            ->join('cajero','usuario.ci','=','cajero.ci')
+            ->where('usuario.ci','=',$cajero->ci)
+            ->get()
+            ->first();
+        return $datos;
     }
 
     /**
@@ -41,9 +63,15 @@ class CajeroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($ci)
     {
-        //
+        $cliente = DB::table('usuario')
+            ->join('cajero','usuario.ci','=','cajero.ci')
+            ->where('usuario.ci','=',$ci)
+            ->get()
+            ->first();
+
+        return $cliente;
     }
 
     /**
@@ -53,9 +81,32 @@ class CajeroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $ci)
     {
-        //
+        $usuario = Usuario::findOrFail($ci);
+        $usuario->ci = $request->ci;
+        $usuario->nombreUsuario = $request->nombreUsuario;
+        $usuario->contraseña = $request->contraseña;
+        $usuario->edad = $request->edad;
+        $usuario->nombre = $request->nombre;
+        $usuario->apellidoPaterno = $request->apellidoPaterno;
+        $usuario->apellidoMaterno = $request->apellidoMaterno;
+        $usuario->estado = $request->estado;
+        $usuario->update();
+
+        $cajero = Cajero::findOrFail($ci);
+        $cajero->ci = $request->ci;
+        $cajero->fechaContratacion = $request->fechaContratacion;
+        $cajero->salario = $request->salario;
+        $cajero->update();
+
+        $datos = DB::table('usuario')
+            ->join('cajero','usuario.ci','=','cajero.ci')
+            ->where('usuario.ci','=',$cajro->ci)
+            ->get()
+            ->first();
+
+        return $datos;
     }
 
     /**
@@ -64,8 +115,10 @@ class CajeroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($ci)
     {
-        //
+        $usuario = Usuario::destroy($ci);
+        $cajero = Cajero::destroy($ci);
+        return $cajero;
     }
 }
