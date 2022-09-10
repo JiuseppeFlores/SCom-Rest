@@ -36,7 +36,7 @@ class CajeroController extends Controller
         $usuario->ci = $request->ci;
         $usuario->nombreUsuario = $request->nombreUsuario;
         $usuario->contraseña = $request->contraseña;
-        $usuario->edad = $request->edad;
+        $usuario->fechaNacimiento = $request->fechaNacimiento;
         $usuario->nombre = $request->nombre;
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
@@ -87,7 +87,7 @@ class CajeroController extends Controller
         $usuario->ci = $request->ci;
         $usuario->nombreUsuario = $request->nombreUsuario;
         $usuario->contraseña = $request->contraseña;
-        $usuario->edad = $request->edad;
+        $usuario->fechaNacimiento = $request->fechaNacimiento;
         $usuario->nombre = $request->nombre;
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;

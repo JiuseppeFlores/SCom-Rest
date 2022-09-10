@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cliente;
 use App\Models\Usuario;
+use Carbon\Carbon;
 
 class ClienteController extends Controller
 {
@@ -36,7 +37,7 @@ class ClienteController extends Controller
         $usuario->ci = $request->ci;
         $usuario->nombreUsuario = $request->nombreUsuario;
         $usuario->contraseña = $request->contraseña;
-        $usuario->edad = $request->edad;
+        $usuario->fechaNacimiento = $request->fechaNacimiento;
         $usuario->nombre = $request->nombre;
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
@@ -88,7 +89,7 @@ class ClienteController extends Controller
         $usuario->ci = $request->ci;
         $usuario->nombreUsuario = $request->nombreUsuario;
         $usuario->contraseña = $request->contraseña;
-        $usuario->edad = $request->edad;
+        $usuario->fechaNacimiento = $request->fechaNacimiento;
         $usuario->nombre = $request->nombre;
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
