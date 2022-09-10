@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\UsuarioController;
+use App\Http\Controllers\Users\CajeroController;
+use App\Http\Controllers\Users\ClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +27,20 @@ Route::controller(UsuarioController::class)->group(function(){
     Route::get('usuario/{ci}', 'show');
     Route::put('usuario/{ci}', 'update');
     Route::delete('usuario/{ci}', 'destroy');
+});
+
+Route::controller(CajeroController::class)->group(function(){
+    Route::get('cajeros/', 'index');
+    Route::post('cajero/', 'store');
+    Route::get('cajero/{ci}', 'show');
+    Route::put('cajero/{ci}', 'update');
+    Route::delete('cajero/{ci}', 'destroy');
+});
+
+Route::controller(ClienteController::class)->group(function(){
+    Route::get('clientes/', 'index');
+    Route::post('cliente/', 'store');
+    Route::get('cliente/{ci}', 'show');
+    Route::put('cliente/{ci}', 'update');
+    Route::delete('cliente/{ci}', 'destroy');
 });
