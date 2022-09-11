@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Usuarios;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use Illuminate\Support\Facades\DB;
+use App\Models\Usuarios\Cliente;
+use App\Models\Usuarios\Usuario;
 
-class UsuarioController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +16,12 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $usuarios = Usuario::all();
-        return $usuarios;
+    {   
+        /*$clientes = Cliente::all();*/
+        $clientes = DB::table('usuario')
+            ->join('cliente','usuario.ci','=','cliente.ci')
+            ->get();
+        return $clientes;
     }
 
     /**
@@ -36,10 +41,21 @@ class UsuarioController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
-
         $usuario->save();
 
-        return $usuario;
+        $cliente = new Cliente();
+        $cliente->ci = $request->ci;
+        $cliente->nit = $request->nit;
+        $cliente->email = $request->email;
+        $cliente->ciCajeroAdiciona = $request->ciCajeroAdiciona;
+        $cliente->save();
+
+        $datos = DB::table('usuario')
+            ->join('cliente','usuario.ci','=','cliente.ci')
+            ->where('usuario.ci','=',$cliente->ci)
+            ->get()
+            ->first();
+        return $datos;
     }
 
     /**
@@ -48,10 +64,15 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($ci)
     {
-        $usuario = Usuario::find($id);
-        return $usuario;
+        $cliente = DB::table('usuario')
+            ->join('cliente','usuario.ci','=','cliente.ci')
+            ->where('usuario.ci','=',$ci)
+            ->get()
+            ->first();
+
+        return $cliente;
     }
 
     /**
@@ -72,9 +93,22 @@ class UsuarioController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
+        $usuario->update();
 
-        $usuario->save();
-        return $usuario;
+        $cliente = Cliente::findOrFail($ci);
+        $cliente->ci = $request->ci;
+        $cliente->nit = $request->nit;
+        $cliente->email = $request->email;
+        $cliente->ciCajeroAdiciona = $request->ciCajeroAdiciona;
+        $cliente->update();
+
+        $datos = DB::table('usuario')
+            ->join('cliente','usuario.ci','=','cliente.ci')
+            ->where('usuario.ci','=',$cliente->ci)
+            ->get()
+            ->first();
+
+        return $datos;
     }
 
     /**
@@ -86,6 +120,7 @@ class UsuarioController extends Controller
     public function destroy($ci)
     {
         $usuario = Usuario::destroy($ci);
-        return $usuario;
+        $cliente = Cliente::destroy($ci);
+        return $cliente;
     }
 }

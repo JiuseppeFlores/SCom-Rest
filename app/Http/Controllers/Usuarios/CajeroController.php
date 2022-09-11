@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Usuarios;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Cajero;
-use App\Models\Usuario;
+use App\Models\Usuarios\Cajero;
+use App\Models\Usuarios\Usuario;
+use App\Http\Requests\Usuarios\CajeroFormRequest;
 
 class CajeroController extends Controller
 {
@@ -17,7 +18,7 @@ class CajeroController extends Controller
      */
     public function index()
     {   
-        /* Jose Luis Flores */
+        /*$clientes = Cliente::all();*/
         $cajeros = DB::table('usuario')
             ->join('cajero','usuario.ci','=','cajero.ci')
             ->get();
@@ -30,7 +31,7 @@ class CajeroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FormCajeroRequest $request)
     {
         $usuario = new Usuario();
         $usuario->ci = $request->ci;
@@ -102,7 +103,7 @@ class CajeroController extends Controller
 
         $datos = DB::table('usuario')
             ->join('cajero','usuario.ci','=','cajero.ci')
-            ->where('usuario.ci','=',$cajero->ci)
+            ->where('usuario.ci','=',$cajro->ci)
             ->get()
             ->first();
 

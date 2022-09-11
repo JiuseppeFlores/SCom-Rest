@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Users\UsuarioController;
-use App\Http\Controllers\Users\CajeroController;
-use App\Http\Controllers\Users\ClienteController;
+use App\Http\Controllers\Usuarios\UsuarioController;
+use App\Http\Controllers\Usuarios\CajeroController;
+use App\Http\Controllers\Usuarios\ClienteController;
 
 /*
 |--------------------------------------------------------------------------

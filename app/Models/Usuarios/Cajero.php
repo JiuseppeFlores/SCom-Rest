@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Usuarios;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Cliente;
+use App\Models\Usuarios\Cliente;
 
 class Cajero extends Model
 {

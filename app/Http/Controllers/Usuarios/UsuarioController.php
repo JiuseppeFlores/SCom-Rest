@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Usuarios;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\Cliente;
-use App\Models\Usuario;
-use Carbon\Carbon;
+use App\Models\Usuarios\Usuario;
+use App\Http\Requests\Usuarios\UsuarioFormRequest;
 
-class ClienteController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +15,9 @@ class ClienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        /*$clientes = Cliente::all(); Jiuseppe*/
-        $clientes = DB::table('usuario')
-            ->join('cliente','usuario.ci','=','cliente.ci')
-            ->get();
-        return $clientes;
+    {
+        $usuarios = Usuario::all();
+        return $usuarios;
     }
 
     /**
@@ -31,7 +26,7 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsuarioFormRequest $request)
     {
         $usuario = new Usuario();
         $usuario->ci = $request->ci;
@@ -42,21 +37,10 @@ class ClienteController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
+
         $usuario->save();
 
-        $cliente = new Cliente();
-        $cliente->ci = $request->ci;
-        $cliente->nit = $request->nit;
-        $cliente->email = $request->email;
-        $cliente->ciCajeroAdiciona = $request->ciCajeroAdiciona;
-        $cliente->save();
-
-        $datos = DB::table('usuario')
-            ->join('cliente','usuario.ci','=','cliente.ci')
-            ->where('usuario.ci','=',$cliente->ci)
-            ->get()
-            ->first();
-        return $datos;
+        return $usuario;
     }
 
     /**
@@ -65,15 +49,10 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($ci)
+    public function show($id)
     {
-        $cliente = DB::table('usuario')
-            ->join('cliente','usuario.ci','=','cliente.ci')
-            ->where('usuario.ci','=',$ci)
-            ->get()
-            ->first();
-
-        return $cliente;
+        $usuario = Usuario::find($id);
+        return $usuario;
     }
 
     /**
@@ -83,7 +62,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $ci)
+    public function update(UsuarioFormRequest $request, $ci)
     {
         $usuario = Usuario::findOrFail($ci);
         $usuario->ci = $request->ci;
@@ -94,22 +73,9 @@ class ClienteController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
-        $usuario->update();
 
-        $cliente = Cliente::findOrFail($ci);
-        $cliente->ci = $request->ci;
-        $cliente->nit = $request->nit;
-        $cliente->email = $request->email;
-        $cliente->ciCajeroAdiciona = $request->ciCajeroAdiciona;
-        $cliente->update();
-
-        $datos = DB::table('usuario')
-            ->join('cliente','usuario.ci','=','cliente.ci')
-            ->where('usuario.ci','=',$cliente->ci)
-            ->get()
-            ->first();
-
-        return $datos;
+        $usuario->save();
+        return $usuario;
     }
 
     /**
@@ -121,7 +87,6 @@ class ClienteController extends Controller
     public function destroy($ci)
     {
         $usuario = Usuario::destroy($ci);
-        $cliente = Cliente::destroy($ci);
-        return $cliente;
+        return $usuario;
     }
 }
