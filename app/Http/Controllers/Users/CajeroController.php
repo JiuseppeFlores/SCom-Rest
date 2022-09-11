@@ -17,7 +17,6 @@ class CajeroController extends Controller
      */
     public function index()
     {   
-        /*$clientes = Cliente::all();*/
         $cajeros = DB::table('usuario')
             ->join('cajero','usuario.ci','=','cajero.ci')
             ->get();
@@ -102,7 +101,7 @@ class CajeroController extends Controller
 
         $datos = DB::table('usuario')
             ->join('cajero','usuario.ci','=','cajero.ci')
-            ->where('usuario.ci','=',$cajro->ci)
+            ->where('usuario.ci','=',$cajero->ci)
             ->get()
             ->first();
 
