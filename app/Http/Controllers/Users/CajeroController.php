@@ -17,6 +17,7 @@ class CajeroController extends Controller
      */
     public function index()
     {   
+        /* Jose Luis Flores */
         $cajeros = DB::table('usuario')
             ->join('cajero','usuario.ci','=','cajero.ci')
             ->get();
