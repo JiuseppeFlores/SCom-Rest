@@ -18,7 +18,7 @@ class ClienteController extends Controller
      */
     public function index()
     {   
-        /*$clientes = Cliente::all();*/
+        /*$clientes = Cliente::all(); Jiuseppe*/
         $clientes = DB::table('usuario')
             ->join('cliente','usuario.ci','=','cliente.ci')
             ->get();
