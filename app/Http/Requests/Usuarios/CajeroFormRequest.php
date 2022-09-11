@@ -3,9 +3,9 @@
 namespace App\Http\Requests\Usuarios;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\Usuarios\FormUsuarioRequest;
+use App\Http\Requests\Usuarios\UsuarioFormRequest;
 
-class FormCajeroRequest extends FormUsuarioRequest
+class CajeroFormRequest extends UsuarioFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class FormCajeroRequest extends FormUsuarioRequest
      */
     public function rules()
     {
-        $this.super();
+        //echo $this;
         return [
-            //
+            //'fechaContratacion' => 'required'
         ];
     }
 }

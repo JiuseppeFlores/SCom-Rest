@@ -22,7 +22,9 @@ class CajeroController extends Controller
         $cajeros = DB::table('usuario')
             ->join('cajero','usuario.ci','=','cajero.ci')
             ->get();
-        return $cajeros;
+
+        $data = array('response' => 'true','data' => $cajeros);
+        return $data;
     }
 
     /**
@@ -31,7 +33,7 @@ class CajeroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FormCajeroRequest $request)
+    public function store(CajeroFormRequest $request)
     {
         $usuario = new Usuario();
         $usuario->ci = $request->ci;
@@ -55,7 +57,9 @@ class CajeroController extends Controller
             ->where('usuario.ci','=',$cajero->ci)
             ->get()
             ->first();
-        return $datos;
+
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -66,13 +70,14 @@ class CajeroController extends Controller
      */
     public function show($ci)
     {
-        $cliente = DB::table('usuario')
+        $cajero = DB::table('usuario')
             ->join('cajero','usuario.ci','=','cajero.ci')
             ->where('usuario.ci','=',$ci)
             ->get()
             ->first();
 
-        return $cliente;
+        $data = array('response' => 'true','data' => $cajero);
+        return $data;
     }
 
     /**
@@ -82,7 +87,7 @@ class CajeroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $ci)
+    public function update(CajeroFormRequest $request, $ci)
     {
         $usuario = Usuario::findOrFail($ci);
         $usuario->ci = $request->ci;
@@ -103,11 +108,12 @@ class CajeroController extends Controller
 
         $datos = DB::table('usuario')
             ->join('cajero','usuario.ci','=','cajero.ci')
-            ->where('usuario.ci','=',$cajro->ci)
+            ->where('usuario.ci','=',$cajero->ci)
             ->get()
             ->first();
 
-        return $datos;
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -120,6 +126,8 @@ class CajeroController extends Controller
     {
         $usuario = Usuario::destroy($ci);
         $cajero = Cajero::destroy($ci);
-        return $cajero;
+        
+        $data = array('response' => 'true','data' => array($usuario,$cajero));
+        return $data;
     }
 }

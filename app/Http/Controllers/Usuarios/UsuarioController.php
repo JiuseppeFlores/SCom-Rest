@@ -17,7 +17,8 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
-        return $usuarios;
+        $data = array('response' => 'true','data' => $usuarios);
+        return $data;
     }
 
     /**
@@ -40,7 +41,8 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return $usuario;
+        $data = array('response' => 'true','data' => $usuario);
+        return $data;
     }
 
     /**
@@ -52,7 +54,9 @@ class UsuarioController extends Controller
     public function show($id)
     {
         $usuario = Usuario::find($id);
-        return $usuario;
+        
+        $data = array('response' => 'true','data' => $usuario);
+        return $data;
     }
 
     /**
@@ -75,7 +79,8 @@ class UsuarioController extends Controller
         $usuario->estado = $request->estado;
 
         $usuario->save();
-        return $usuario;
+        $data = array('response' => 'true','data' => $usuario);
+        return $data;
     }
 
     /**
@@ -87,6 +92,7 @@ class UsuarioController extends Controller
     public function destroy($ci)
     {
         $usuario = Usuario::destroy($ci);
-        return $usuario;
+        $data = array("response" => "true","data" => array($usuario));
+        return $data;
     }
 }

@@ -18,10 +18,12 @@ class ClienteController extends Controller
     public function index()
     {   
         /*$clientes = Cliente::all();*/
-        $clientes = DB::table('usuario')
+        $datos = DB::table('usuario')
             ->join('cliente','usuario.ci','=','cliente.ci')
             ->get();
-        return $clientes;
+
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -55,7 +57,9 @@ class ClienteController extends Controller
             ->where('usuario.ci','=',$cliente->ci)
             ->get()
             ->first();
-        return $datos;
+        
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -66,13 +70,14 @@ class ClienteController extends Controller
      */
     public function show($ci)
     {
-        $cliente = DB::table('usuario')
+        $datos = DB::table('usuario')
             ->join('cliente','usuario.ci','=','cliente.ci')
             ->where('usuario.ci','=',$ci)
             ->get()
             ->first();
 
-        return $cliente;
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -108,7 +113,8 @@ class ClienteController extends Controller
             ->get()
             ->first();
 
-        return $datos;
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -121,6 +127,7 @@ class ClienteController extends Controller
     {
         $usuario = Usuario::destroy($ci);
         $cliente = Cliente::destroy($ci);
-        return $cliente;
+        $data = array('response' => 'true','data' => array($usuario,$cliente));
+        return $data;
     }
 }
