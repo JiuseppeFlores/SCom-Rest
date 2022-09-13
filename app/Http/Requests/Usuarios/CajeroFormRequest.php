@@ -30,7 +30,7 @@ class CajeroFormRequest extends FormRequest
             'contraseña' => ['filled','required','min:3','max:25'],
             'nombre' => ['filled','regex:/^[a-zA-Z\s]+$/u','required','min:3','max:25'],
             'apellidoPaterno' => ['filled','alpha','required','min:3','max:25'],
-            'apellidoMaterno' => ['sometimes','filled','alpha','min:3','max:25'],
+            'apellidoMaterno' => ['sometimes', 'nullable','alpha','min:3','max:25'],
             'estado' => ['required','in:habilitado,deshabilitado'],
             'fechaNacimiento' => ['sometimes','nullable','date'],
             'fechaContratacion' => ['required','date'],

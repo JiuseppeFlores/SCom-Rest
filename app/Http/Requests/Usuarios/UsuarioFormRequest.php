@@ -30,8 +30,8 @@ class UsuarioFormRequest extends FormRequest
             'nombreUsuario' => ['filled','required','min:3','max:25','alpha_num'],
             'contraseña' => ['filled','required','min:3','max:25'],
             'nombre' => ['filled','alpha','required','min:3','max:25'],
-            'apellidoPaterno' => ['filled','alpha','required','min:3','max:25'],
-            'apellidoMaterno' => ['sometimes','filled','alpha','min:3','max:25'],
+            'apellidoPaterno' => ['filled','required','min:3','max:25'],
+            'apellidoMaterno' => ['sometimes', 'nullable','alpha','min:3','max:25'],
             'estado' => ['required','in:habilitado,deshabilitado'],
             'fechaNacimiento' => ['sometimes','nullable','date']
         ];
