@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Usuarios;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Cliente;
-use App\Models\Usuario;
-use Carbon\Carbon;
+use App\Models\Usuarios\Cajero;
+use App\Models\Usuarios\Usuario;
+use App\Http\Requests\Usuarios\CajeroFormRequest;
 
-class ClienteController extends Controller
+class CajeroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +18,13 @@ class ClienteController extends Controller
      */
     public function index()
     {   
-        /*$clientes = Cliente::all(); Jiuseppe*/
-        $clientes = DB::table('usuario')
-            ->join('cliente','usuario.ci','=','cliente.ci')
+        /*$clientes = Cliente::all();*/
+        $cajeros = DB::table('usuario')
+            ->join('cajero','usuario.ci','=','cajero.ci')
             ->get();
-        return $clientes;
+
+        $data = array('response' => 'true','data' => $cajeros);
+        return $data;
     }
 
     /**
@@ -31,7 +33,7 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CajeroFormRequest $request)
     {
         $usuario = new Usuario();
         $usuario->ci = $request->ci;
@@ -44,19 +46,20 @@ class ClienteController extends Controller
         $usuario->estado = $request->estado;
         $usuario->save();
 
-        $cliente = new Cliente();
-        $cliente->ci = $request->ci;
-        $cliente->nit = $request->nit;
-        $cliente->email = $request->email;
-        $cliente->ciCajeroAdiciona = $request->ciCajeroAdiciona;
-        $cliente->save();
+        $cajero = new Cajero();
+        $cajero->ci = $request->ci;
+        $cajero->fechaContratacion = $request->fechaContratacion;
+        $cajero->salario = $request->salario;
+        $cajero->save();
 
         $datos = DB::table('usuario')
-            ->join('cliente','usuario.ci','=','cliente.ci')
-            ->where('usuario.ci','=',$cliente->ci)
+            ->join('cajero','usuario.ci','=','cajero.ci')
+            ->where('usuario.ci','=',$cajero->ci)
             ->get()
             ->first();
-        return $datos;
+
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -67,13 +70,14 @@ class ClienteController extends Controller
      */
     public function show($ci)
     {
-        $cliente = DB::table('usuario')
-            ->join('cliente','usuario.ci','=','cliente.ci')
+        $cajero = DB::table('usuario')
+            ->join('cajero','usuario.ci','=','cajero.ci')
             ->where('usuario.ci','=',$ci)
             ->get()
             ->first();
 
-        return $cliente;
+        $data = array('response' => 'true','data' => $cajero);
+        return $data;
     }
 
     /**
@@ -83,9 +87,15 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $ci)
+    public function update(CajeroFormRequest $request, $ci)
     {
-        $usuario = Usuario::findOrFail($ci);
+        /*$val = new UsuarioFormRequest;
+        $val->setContainer(app());*/
+        //$request['attending'] = true;
+        //app('App\Http\Requests\Usuarios\UsuarioFormRequest');
+        //app('App\Http\Requests\Usuarios\CajeroFormRequest');
+
+        /*$usuario = Usuario::findOrFail($ci);
         $usuario->ci = $request->ci;
         $usuario->nombreUsuario = $request->nombreUsuario;
         $usuario->contraseña = $request->contraseña;
@@ -96,20 +106,21 @@ class ClienteController extends Controller
         $usuario->estado = $request->estado;
         $usuario->update();
 
-        $cliente = Cliente::findOrFail($ci);
-        $cliente->ci = $request->ci;
-        $cliente->nit = $request->nit;
-        $cliente->email = $request->email;
-        $cliente->ciCajeroAdiciona = $request->ciCajeroAdiciona;
-        $cliente->update();
+        $cajero = Cajero::findOrFail($ci);
+        $cajero->ci = $request->ci;
+        $cajero->fechaContratacion = $request->fechaContratacion;
+        $cajero->salario = $request->salario;
+        $cajero->update();
 
         $datos = DB::table('usuario')
-            ->join('cliente','usuario.ci','=','cliente.ci')
-            ->where('usuario.ci','=',$cliente->ci)
+            ->join('cajero','usuario.ci','=','cajero.ci')
+            ->where('usuario.ci','=',$cajero->ci)
             ->get()
             ->first();
 
-        return $datos;
+        $data = array('response' => 'true','data' => $datos);
+        return $data;*/
+        return "asdasd";
     }
 
     /**
@@ -121,7 +132,9 @@ class ClienteController extends Controller
     public function destroy($ci)
     {
         $usuario = Usuario::destroy($ci);
-        $cliente = Cliente::destroy($ci);
-        return $cliente;
+        $cajero = Cajero::destroy($ci);
+        
+        $data = array('response' => 'true','data' => array($usuario,$cajero));
+        return $data;
     }
 }

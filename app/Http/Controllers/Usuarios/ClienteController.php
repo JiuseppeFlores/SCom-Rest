@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Usuarios;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Cajero;
-use App\Models\Usuario;
+use App\Models\Usuarios\Cliente;
+use App\Models\Usuarios\Usuario;
 
-class CajeroController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +17,13 @@ class CajeroController extends Controller
      */
     public function index()
     {   
-        /* Jose Luis Flores */
-        $cajeros = DB::table('usuario')
-            ->join('cajero','usuario.ci','=','cajero.ci')
+        /*$clientes = Cliente::all();*/
+        $datos = DB::table('usuario')
+            ->join('cliente','usuario.ci','=','cliente.ci')
             ->get();
-        return $cajeros;
+
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -43,18 +45,21 @@ class CajeroController extends Controller
         $usuario->estado = $request->estado;
         $usuario->save();
 
-        $cajero = new Cajero();
-        $cajero->ci = $request->ci;
-        $cajero->fechaContratacion = $request->fechaContratacion;
-        $cajero->salario = $request->salario;
-        $cajero->save();
+        $cliente = new Cliente();
+        $cliente->ci = $request->ci;
+        $cliente->nit = $request->nit;
+        $cliente->email = $request->email;
+        $cliente->ciCajeroAdiciona = $request->ciCajeroAdiciona;
+        $cliente->save();
 
         $datos = DB::table('usuario')
-            ->join('cajero','usuario.ci','=','cajero.ci')
-            ->where('usuario.ci','=',$cajero->ci)
+            ->join('cliente','usuario.ci','=','cliente.ci')
+            ->where('usuario.ci','=',$cliente->ci)
             ->get()
             ->first();
-        return $datos;
+        
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -65,13 +70,14 @@ class CajeroController extends Controller
      */
     public function show($ci)
     {
-        $cliente = DB::table('usuario')
-            ->join('cajero','usuario.ci','=','cajero.ci')
+        $datos = DB::table('usuario')
+            ->join('cliente','usuario.ci','=','cliente.ci')
             ->where('usuario.ci','=',$ci)
             ->get()
             ->first();
 
-        return $cliente;
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -94,19 +100,21 @@ class CajeroController extends Controller
         $usuario->estado = $request->estado;
         $usuario->update();
 
-        $cajero = Cajero::findOrFail($ci);
-        $cajero->ci = $request->ci;
-        $cajero->fechaContratacion = $request->fechaContratacion;
-        $cajero->salario = $request->salario;
-        $cajero->update();
+        $cliente = Cliente::findOrFail($ci);
+        $cliente->ci = $request->ci;
+        $cliente->nit = $request->nit;
+        $cliente->email = $request->email;
+        $cliente->ciCajeroAdiciona = $request->ciCajeroAdiciona;
+        $cliente->update();
 
         $datos = DB::table('usuario')
-            ->join('cajero','usuario.ci','=','cajero.ci')
-            ->where('usuario.ci','=',$cajero->ci)
+            ->join('cliente','usuario.ci','=','cliente.ci')
+            ->where('usuario.ci','=',$cliente->ci)
             ->get()
             ->first();
 
-        return $datos;
+        $data = array('response' => 'true','data' => $datos);
+        return $data;
     }
 
     /**
@@ -118,7 +126,8 @@ class CajeroController extends Controller
     public function destroy($ci)
     {
         $usuario = Usuario::destroy($ci);
-        $cajero = Cajero::destroy($ci);
-        return $cajero;
+        $cliente = Cliente::destroy($ci);
+        $data = array('response' => 'true','data' => array($usuario,$cliente));
+        return $data;
     }
 }

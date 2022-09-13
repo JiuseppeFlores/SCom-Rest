@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Usuarios;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\Models\Usuarios\Usuario;
+use App\Http\Requests\Usuarios\UsuarioFormRequest;
 
 class UsuarioController extends Controller
 {
@@ -16,9 +17,14 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
+<<<<<<< HEAD:app/Http/Controllers/Users/UsuarioController.php
        
         return $usuarios;
         
+=======
+        $data = array('response' => 'true','data' => $usuarios);
+        return $data;
+>>>>>>> 8c7cde94f3e280fae763f6523ba80c7bec6e11d5:app/Http/Controllers/Usuarios/UsuarioController.php
     }
 
     /**
@@ -27,7 +33,7 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsuarioFormRequest $request)
     {
         $usuario = new Usuario();
         $usuario->ci = $request->ci;
@@ -41,7 +47,8 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return $usuario;
+        $data = array('response' => 'true','data' => $usuario);
+        return $data;
     }
 
     /**
@@ -53,7 +60,9 @@ class UsuarioController extends Controller
     public function show($id)
     {
         $usuario = Usuario::find($id);
-        return $usuario;
+        
+        $data = array('response' => 'true','data' => $usuario);
+        return $data;
     }
 
     /**
@@ -63,7 +72,7 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $ci)
+    public function update(UsuarioFormRequest $request, $ci)
     {
         $usuario = Usuario::findOrFail($ci);
         $usuario->ci = $request->ci;
@@ -76,7 +85,8 @@ class UsuarioController extends Controller
         $usuario->estado = $request->estado;
 
         $usuario->save();
-        return $usuario;
+        $data = array('response' => 'true','data' => $usuario);
+        return $data;
     }
 
     /**
@@ -88,6 +98,7 @@ class UsuarioController extends Controller
     public function destroy($ci)
     {
         $usuario = Usuario::destroy($ci);
-        return $usuario;
+        $data = array("response" => "true","data" => array($usuario));
+        return $data;
     }
 }
