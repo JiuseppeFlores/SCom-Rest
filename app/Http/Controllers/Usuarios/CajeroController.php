@@ -18,12 +18,11 @@ class CajeroController extends Controller
      */
     public function index()
     {   
-        /*$clientes = Cliente::all();*/
         $cajeros = DB::table('usuario')
             ->join('cajero','usuario.ci','=','cajero.ci')
             ->get();
 
-        $data = array('response' => 'true','data' => $cajeros);
+        $data = array('data' => $cajeros, 'error' => []);
         return $data;
     }
 
@@ -58,7 +57,7 @@ class CajeroController extends Controller
             ->get()
             ->first();
 
-        $data = array('response' => 'true','data' => $datos);
+        $data = array('data' => $datos, 'error' => []);
         return $data;
     }
 
@@ -76,7 +75,7 @@ class CajeroController extends Controller
             ->get()
             ->first();
 
-        $data = array('response' => 'true','data' => $cajero);
+        $data = array('data' => $cajero, 'error' => []);
         return $data;
     }
 
@@ -89,12 +88,6 @@ class CajeroController extends Controller
      */
     public function update(CajeroFormRequest $request, $ci)
     {
-        /*$val = new UsuarioFormRequest;
-        $val->setContainer(app());*/
-        //$request['attending'] = true;
-        //app('App\Http\Requests\Usuarios\UsuarioFormRequest');
-        //app('App\Http\Requests\Usuarios\CajeroFormRequest');
-
         $usuario = Usuario::findOrFail($ci);
         $usuario->ci = $request->ci;
         $usuario->nombreUsuario = $request->nombreUsuario;
@@ -118,9 +111,9 @@ class CajeroController extends Controller
             ->get()
             ->first();
 
-        $data = array('response' => 'true','data' => $datos);
+        //$data = array('response' => 'true','data' => $datos);
+        $data = array('data' => $datos,'error' => []);
         return $data;
-        //return "asdasd";
     }
 
     /**
@@ -134,7 +127,7 @@ class CajeroController extends Controller
         $usuario = Usuario::destroy($ci);
         $cajero = Cajero::destroy($ci);
         
-        $data = array('response' => 'true','data' => array($usuario,$cajero));
+        $data = array('data' => (object)null, 'error' => []);
         return $data;
     }
 }
