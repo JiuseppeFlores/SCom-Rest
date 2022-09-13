@@ -89,7 +89,13 @@ class CajeroController extends Controller
      */
     public function update(CajeroFormRequest $request, $ci)
     {
-        $usuario = Usuario::findOrFail($ci);
+        /*$val = new UsuarioFormRequest;
+        $val->setContainer(app());*/
+        //$request['attending'] = true;
+        //app('App\Http\Requests\Usuarios\UsuarioFormRequest');
+        //app('App\Http\Requests\Usuarios\CajeroFormRequest');
+
+        /*$usuario = Usuario::findOrFail($ci);
         $usuario->ci = $request->ci;
         $usuario->nombreUsuario = $request->nombreUsuario;
         $usuario->contraseña = $request->contraseña;
@@ -113,7 +119,8 @@ class CajeroController extends Controller
             ->first();
 
         $data = array('response' => 'true','data' => $datos);
-        return $data;
+        return $data;*/
+        return "asdasd";
     }
 
     /**
