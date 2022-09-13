@@ -95,7 +95,7 @@ class CajeroController extends Controller
         //app('App\Http\Requests\Usuarios\UsuarioFormRequest');
         //app('App\Http\Requests\Usuarios\CajeroFormRequest');
 
-        /*$usuario = Usuario::findOrFail($ci);
+        $usuario = Usuario::findOrFail($ci);
         $usuario->ci = $request->ci;
         $usuario->nombreUsuario = $request->nombreUsuario;
         $usuario->contraseña = $request->contraseña;
@@ -119,8 +119,8 @@ class CajeroController extends Controller
             ->first();
 
         $data = array('response' => 'true','data' => $datos);
-        return $data;*/
-        return "asdasd";
+        return $data;
+        //return "asdasd";
     }
 
     /**
