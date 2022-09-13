@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Usuarios;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Camarero extends Model
+class Administrador extends Model
 {
     use HasFactory;
-    protected $table = 'camarero';
+    protected $table = 'administrador';
     protected $primaryKey = 'ci';
     public $incrementing = false;
     public $timestamps = false;

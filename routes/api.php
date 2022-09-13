@@ -6,6 +6,8 @@ use App\Http\Controllers\Usuarios\UsuarioController;
 use App\Http\Controllers\Usuarios\CajeroController;
 use App\Http\Controllers\Usuarios\ClienteController;
 use App\Http\Controllers\Usuarios\AdministradorController;
+use App\Http\Controllers\Usuarios\CamareroController;
+use App\Http\Controllers\Usuarios\ChefController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +54,20 @@ Route::controller(AdministradorController::class)->group(function(){
     Route::get('administrador/{ci}', 'show');
     Route::put('administrador/{ci}', 'update');
     Route::delete('administrador/{ci}', 'destroy');
+});
+
+Route::controller(CamareroController::class)->group(function(){
+    Route::get('camareros/', 'index');
+    Route::post('camarero/', 'store');
+    Route::get('camarero/{ci}', 'show');
+    Route::put('camarero/{ci}', 'update');
+    Route::delete('camarero/{ci}', 'destroy');
+});
+
+Route::controller(ChefController::class)->group(function(){
+    Route::get('chefs/', 'index');
+    Route::post('chef/', 'store');
+    Route::get('chef/{ci}', 'show');
+    Route::put('chef/{ci}', 'update');
+    Route::delete('chef/{ci}', 'destroy');
 });

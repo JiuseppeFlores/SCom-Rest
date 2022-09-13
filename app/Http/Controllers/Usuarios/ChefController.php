@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Chef;
-use App\Models\Usuario;
+use App\Models\Usuarios\Usuario;
+use App\Models\Usuarios\Chef;
 
 class ChefController extends Controller
 {

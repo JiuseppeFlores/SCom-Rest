@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Camarero;
-use App\Models\Usuario;
-
+use App\Models\Usuarios\Camarero;
+use App\Models\Usuarios\Usuario;
 class CamareroController extends Controller
 {
      /**
