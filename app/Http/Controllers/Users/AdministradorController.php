@@ -4,21 +4,24 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Administrador;
 use App\Models\Usuario;
 
-class UsuarioController extends Controller
+class AdministradorController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $usuarios = Usuario::all();
-       
-        return $usuarios;
+    {   
         
+        $administradores = DB::table('usuario')
+            ->join('administrador','usuario.ci','=','administrador.ci')
+            ->get();
+        return $administradores;
     }
 
     /**
@@ -38,10 +41,18 @@ class UsuarioController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
-
         $usuario->save();
 
-        return $usuario;
+        $administrador = new Administrador();
+        $administrador->ci = $request->ci;
+        $administrador->save();
+
+        $datos = DB::table('usuario')
+            ->join('administrador','usuario.ci','=','administrador.ci')
+            ->where('usuario.ci','=',$administrador->ci)
+            ->get()
+            ->first();
+        return $datos;
     }
 
     /**
@@ -50,10 +61,15 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($ci)
     {
-        $usuario = Usuario::find($id);
-        return $usuario;
+        $cliente = DB::table('usuario')
+            ->join('administrador','usuario.ci','=','administrador.ci')
+            ->where('usuario.ci','=',$ci)
+            ->get()
+            ->first();
+
+        return $cliente;
     }
 
     /**
@@ -74,9 +90,19 @@ class UsuarioController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
+        $usuario->update();
 
-        $usuario->save();
-        return $usuario;
+        $administrador = Administrador::findOrFail($ci);
+        $administrador->ci = $request->ci;
+        $administrador->update();
+
+        $datos = DB::table('usuario')
+            ->join('administrador','usuario.ci','=','administrador.ci')
+            ->where('usuario.ci','=',$administrador->ci)
+            ->get()
+            ->first();
+
+        return $datos;
     }
 
     /**
@@ -88,6 +114,7 @@ class UsuarioController extends Controller
     public function destroy($ci)
     {
         $usuario = Usuario::destroy($ci);
-        return $usuario;
+        $administrador = Administrador::destroy($ci);
+        return $administrador;
     }
 }

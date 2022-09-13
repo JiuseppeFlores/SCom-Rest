@@ -4,21 +4,24 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Camarero;
 use App\Models\Usuario;
 
-class UsuarioController extends Controller
+class CamareroController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $usuarios = Usuario::all();
-       
-        return $usuarios;
+    {   
         
+        $camareros = DB::table('usuario')
+            ->join('camarero','usuario.ci','=','camarero.ci')
+            ->get();
+        return $camareros;
     }
 
     /**
@@ -38,10 +41,20 @@ class UsuarioController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
-
         $usuario->save();
 
-        return $usuario;
+        $camarero = new Camarero();
+        $camarero->ci = $request->ci;
+        $camarero->fechaContratacion = $request->fechaContratacion;
+        $camarero->salario = $request->salario;
+        $camarero->save();
+
+        $datos = DB::table('usuario')
+            ->join('camarero','usuario.ci','=','camarero.ci')
+            ->where('usuario.ci','=',$camarero->ci)
+            ->get()
+            ->first();
+        return $datos;
     }
 
     /**
@@ -50,10 +63,15 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($ci)
     {
-        $usuario = Usuario::find($id);
-        return $usuario;
+        $cliente = DB::table('usuario')
+            ->join('camarero','usuario.ci','=','camarero.ci')
+            ->where('usuario.ci','=',$ci)
+            ->get()
+            ->first();
+
+        return $cliente;
     }
 
     /**
@@ -74,9 +92,21 @@ class UsuarioController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
+        $usuario->update();
 
-        $usuario->save();
-        return $usuario;
+        $camarero = Camarero::findOrFail($ci);
+        $camarero->ci = $request->ci;
+        $camarero->fechaContratacion = $request->fechaContratacion;
+        $camarero->salario = $request->salario;
+        $camarero->update();
+
+        $datos = DB::table('usuario')
+            ->join('camarero','usuario.ci','=','camarero.ci')
+            ->where('usuario.ci','=',$camarero->ci)
+            ->get()
+            ->first();
+
+        return $datos;
     }
 
     /**
@@ -88,6 +118,7 @@ class UsuarioController extends Controller
     public function destroy($ci)
     {
         $usuario = Usuario::destroy($ci);
-        return $usuario;
+        $camarero = Camarero::destroy($ci);
+        return $camarero;
     }
 }

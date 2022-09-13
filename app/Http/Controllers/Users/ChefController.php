@@ -4,21 +4,24 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Chef;
 use App\Models\Usuario;
 
-class UsuarioController extends Controller
+class ChefController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $usuarios = Usuario::all();
-       
-        return $usuarios;
+    {   
         
+        $chefs = DB::table('usuario')
+            ->join('chef','usuario.ci','=','chef.ci')
+            ->get();
+        return $chefs;
     }
 
     /**
@@ -38,10 +41,21 @@ class UsuarioController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
-
         $usuario->save();
 
-        return $usuario;
+        $chef = new Chef();
+        $chef->ci = $request->ci;
+        $chef->fechaContratacion = $request->fechaContratacion;
+        $chef->especialidad = $request->especialidad;
+        $chef->salario = $request->salario;
+        $chef->save();
+
+        $datos = DB::table('usuario')
+            ->join('chef','usuario.ci','=','chef.ci')
+            ->where('usuario.ci','=',$chef->ci)
+            ->get()
+            ->first();
+        return $datos;
     }
 
     /**
@@ -50,10 +64,15 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($ci)
     {
-        $usuario = Usuario::find($id);
-        return $usuario;
+        $cliente = DB::table('usuario')
+            ->join('chef','usuario.ci','=','chef.ci')
+            ->where('usuario.ci','=',$ci)
+            ->get()
+            ->first();
+
+        return $cliente;
     }
 
     /**
@@ -74,9 +93,22 @@ class UsuarioController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
+        $usuario->update();
 
-        $usuario->save();
-        return $usuario;
+        $chef = Chef::findOrFail($ci);
+        $chef->ci = $request->ci;
+        $chef->fechaContratacion = $request->fechaContratacion;
+        $chef->especialidad = $request->especialidad;
+        $chef->salario = $request->salario;
+        $chef->update();
+
+        $datos = DB::table('usuario')
+            ->join('chef','usuario.ci','=','chef.ci')
+            ->where('usuario.ci','=',$chef->ci)
+            ->get()
+            ->first();
+
+        return $datos;
     }
 
     /**
@@ -88,6 +120,7 @@ class UsuarioController extends Controller
     public function destroy($ci)
     {
         $usuario = Usuario::destroy($ci);
-        return $usuario;
+        $chef = Chef::destroy($ci);
+        return $chef;
     }
 }
