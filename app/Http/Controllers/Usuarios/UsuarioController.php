@@ -17,14 +17,8 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
-<<<<<<< HEAD:app/Http/Controllers/Users/UsuarioController.php
-       
-        return $usuarios;
-        
-=======
-        $data = array('response' => 'true','data' => $usuarios);
+        $data = array('data' => $usuarios,'error' => []);
         return $data;
->>>>>>> 8c7cde94f3e280fae763f6523ba80c7bec6e11d5:app/Http/Controllers/Usuarios/UsuarioController.php
     }
 
     /**
