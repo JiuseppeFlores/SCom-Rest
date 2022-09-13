@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Usuarios\UsuarioController;
 use App\Http\Controllers\Usuarios\CajeroController;
 use App\Http\Controllers\Usuarios\ClienteController;
+use App\Http\Controllers\Usuarios\AdministradorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,4 +44,12 @@ Route::controller(ClienteController::class)->group(function(){
     Route::get('cliente/{ci}', 'show');
     Route::put('cliente/{ci}', 'update');
     Route::delete('cliente/{ci}', 'destroy');
+});
+
+Route::controller(AdministradorController::class)->group(function(){
+    Route::get('administradores/', 'index');
+    Route::post('adminisrador/', 'store');
+    Route::get('administrador/{ci}', 'show');
+    Route::put('administrador/{ci}', 'update');
+    Route::delete('administrador/{ci}', 'destroy');
 });
