@@ -71,3 +71,11 @@ Route::controller(ChefController::class)->group(function(){
     Route::put('chef/{ci}', 'update');
     Route::delete('chef/{ci}', 'destroy');
 });
+
+Route::controller(IngredienteController::class)->group(function(){
+    Route::get('ingredientes/', 'index');
+    Route::post('ingrediente/', 'store');
+    Route::get('ingrediente/{codIngrediente}', 'show');
+    Route::put('ingrediente/{codIngrediente}', 'update');
+    Route::delete('ingrediente/{codIngrediente}', 'destroy');
+});

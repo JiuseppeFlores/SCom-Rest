@@ -21,7 +21,8 @@ class ChefController extends Controller
         $chefs = DB::table('usuario')
             ->join('chef','usuario.ci','=','chef.ci')
             ->get();
-        return $chefs;
+        $data = array('data' => $chefs,'error' => []);
+        return $data;
     }
 
     /**
@@ -55,7 +56,8 @@ class ChefController extends Controller
             ->where('usuario.ci','=',$chef->ci)
             ->get()
             ->first();
-        return $datos;
+        $data = array('data' => $datos,'error' => []);
+        return $data;
     }
 
     /**
@@ -66,13 +68,13 @@ class ChefController extends Controller
      */
     public function show($ci)
     {
-        $cliente = DB::table('usuario')
+        $chef = DB::table('usuario')
             ->join('chef','usuario.ci','=','chef.ci')
             ->where('usuario.ci','=',$ci)
             ->get()
             ->first();
-
-        return $cliente;
+        $data = array('data' => $chef,'error' => []);
+        return $data;
     }
 
     /**
@@ -107,8 +109,8 @@ class ChefController extends Controller
             ->where('usuario.ci','=',$chef->ci)
             ->get()
             ->first();
-
-        return $datos;
+        $data = array('data' => $datos,'error' => []);
+        return $data;
     }
 
     /**
@@ -121,6 +123,7 @@ class ChefController extends Controller
     {
         $usuario = Usuario::destroy($ci);
         $chef = Chef::destroy($ci);
-        return $chef;
+        $data = array('data' => (object)null, 'error' => []);
+        return $data;
     }
 }

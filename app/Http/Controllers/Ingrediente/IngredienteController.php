@@ -15,7 +15,8 @@ class IngredienteController extends Controller
     public function index()
     {
         $datos = DB::table('ingrediente');
-        $data = array('response' => 'true','data' => $datos);
+        $data = array('data' => $datos, 'error' => []);
+        //$data = array('response' => 'true','data' => $datos);
         return $data;
     }
 
@@ -29,14 +30,16 @@ class IngredienteController extends Controller
 
         $ingrediente->save();
 
-        $data = array('response' => 'true','data' => $ingrediente);
+        //$data = array('response' => 'true','data' => $ingrediente);
+        $data = array('data' => $ingrediente, 'error' => []);
         return $data;
     }
     public function show($codIngrediente)
     {
         $ingrediente = Ingrediente::find($codIngrediente);
         
-        $data = array('response' => 'true','data' => $ingrediente);
+        //$data = array('response' => 'true','data' => $ingrediente);
+        $data = array('data' => $ingrediente, 'error' => []);
         return $data;
     }
     public function update(IngredienteFormRequest $request, $codIngrediente)
@@ -48,13 +51,16 @@ class IngredienteController extends Controller
         $ingrediente->tipo = $request->tipo;
 
         $ingrediente->save();
-        $data = array('response' => 'true','data' => $ingrediente);
+        //$data = array('response' => 'true','data' => $ingrediente);
+        $data = array('data' => $ingrediente, 'error' => []);
         return $data;
     }
     public function destroy($codIngrediente)
     {
         $ingrediente = Ingrediente::destroy($codIngrediente);
-        $data = array("response" => "true","data" => array($ingrediente));
+
+        //$data = array("response" => "true","data" => array($ingrediente));
+        $data = array('data' => (object)null, 'error' => []);
         return $data;
     }
 }

@@ -16,11 +16,11 @@ class CamareroController extends Controller
      */
     public function index()
     {   
-        
         $camareros = DB::table('usuario')
             ->join('camarero','usuario.ci','=','camarero.ci')
             ->get();
-        return $camareros;
+        $data = array('data' => $camareros,'error' => []);
+        return $data;
     }
 
     /**
@@ -53,7 +53,9 @@ class CamareroController extends Controller
             ->where('usuario.ci','=',$camarero->ci)
             ->get()
             ->first();
-        return $datos;
+
+        $data = array('data' => $datos,'error' => []);
+        return $data;
     }
 
     /**
@@ -69,8 +71,8 @@ class CamareroController extends Controller
             ->where('usuario.ci','=',$ci)
             ->get()
             ->first();
-
-        return $cliente;
+        $data = array('data' => $cliente,'error' => []);
+        return $data;
     }
 
     /**
@@ -104,8 +106,8 @@ class CamareroController extends Controller
             ->where('usuario.ci','=',$camarero->ci)
             ->get()
             ->first();
-
-        return $datos;
+        $data = array('data' => $datos,'error' => []);
+        return $data;
     }
 
     /**
@@ -118,6 +120,7 @@ class CamareroController extends Controller
     {
         $usuario = Usuario::destroy($ci);
         $camarero = Camarero::destroy($ci);
-        return $camarero;
+        $data = array('data' => (object)null, 'error' => []);
+        return $data;
     }
 }

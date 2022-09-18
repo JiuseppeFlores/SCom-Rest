@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Ingrediente;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Api\FormRequest;
 use Illuminate\Validation\Rule;
 
 class IngredienteFormRequest extends FormRequest

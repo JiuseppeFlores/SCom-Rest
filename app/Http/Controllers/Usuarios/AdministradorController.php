@@ -21,7 +21,8 @@ class AdministradorController extends Controller
         $administradores = DB::table('usuario')
             ->join('administrador','usuario.ci','=','administrador.ci')
             ->get();
-        return $administradores;
+        $data = array('data' => $administradores, 'error' => []);
+        return $data;
     }
 
     /**
@@ -52,7 +53,8 @@ class AdministradorController extends Controller
             ->where('usuario.ci','=',$administrador->ci)
             ->get()
             ->first();
-        return $datos;
+        $data = array('data' => $datos, 'error' => []);
+        return $data;
     }
 
     /**
@@ -68,8 +70,8 @@ class AdministradorController extends Controller
             ->where('usuario.ci','=',$ci)
             ->get()
             ->first();
-
-        return $cliente;
+        $data = array('data' => $cliente, 'error' => []);
+        return $data;
     }
 
     /**
@@ -101,8 +103,8 @@ class AdministradorController extends Controller
             ->where('usuario.ci','=',$administrador->ci)
             ->get()
             ->first();
-
-        return $datos;
+        $data = array('data' => $datos, 'error' => []);
+        return $data;
     }
 
     /**
@@ -115,6 +117,7 @@ class AdministradorController extends Controller
     {
         $usuario = Usuario::destroy($ci);
         $administrador = Administrador::destroy($ci);
-        return $administrador;
+        $data = array('data' => (object)null, 'error' => []);
+        return $data;
     }
 }
