@@ -47,7 +47,7 @@ class ProductoController extends Controller
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
 
-        $producto->save();
+        $producto->update();
         //$data = array('response' => 'true','data' => $producto);
         $data = array('data' => $producto, 'error' => []);
         return $data;
