@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Usuarios\Usuario;
 use App\Models\Usuarios\Administrador;
+use App\Http\Requests\Usuarios\AdministradorFormRequest;
 
 class AdministradorController extends Controller
 {

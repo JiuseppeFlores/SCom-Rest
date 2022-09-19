@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Usuarios\Usuario;
 use App\Models\Usuarios\Chef;
+use App\Http\Requests\Usuarios\ChefFormRequest;
 
 class ChefController extends Controller
 {

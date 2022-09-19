@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Usuarios\Camarero;
 use App\Models\Usuarios\Usuario;
+use App\Http\Requests\Usuarios\CamareroFormRequest;
+
 class CamareroController extends Controller
 {
      /**

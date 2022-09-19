@@ -17,4 +17,8 @@ class Cliente extends Model
     public function cajero(){
         return $this->belongsTo(Cajero::class,'ciCajeroAdiciona','ci');
     }
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class,'ciCliente','ci');
+    }
 }

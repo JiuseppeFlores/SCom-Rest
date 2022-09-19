@@ -18,4 +18,10 @@ class Cajero extends Model
     {
         return $this->hasMany(Cliente::class,'ciCajeroAdiciona','ci');
     }
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class,'ciCajero','ci');
+    }
+
+
 }

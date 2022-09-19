@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Usuarios\Cliente;
 use App\Models\Usuarios\Usuario;
+use App\Http\Requests\Usuarios\ClienteFormRequest;
 
 class ClienteController extends Controller
 {
