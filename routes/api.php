@@ -8,7 +8,7 @@ use App\Http\Controllers\Usuarios\ClienteController;
 use App\Http\Controllers\Usuarios\AdministradorController;
 use App\Http\Controllers\Usuarios\CamareroController;
 use App\Http\Controllers\Usuarios\ChefController;
-use App\Http\Controllers\Ingredientes\IngredientesController;
+use App\Http\Controllers\Ingrediente\IngredientesController;
 
 /*
 |--------------------------------------------------------------------------
