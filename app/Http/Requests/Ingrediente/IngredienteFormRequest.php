@@ -35,7 +35,7 @@ class IngredienteFormRequest extends FormRequest
     public function attributes()
     {
         return [
-            'codIngrediente' => 'codIngrediente',
+            'codIngrediente' => 'codigo de Ingrediente',
             'nombre' => 'nombre',
             'cantidad' => 'cantidad',
             'tipo' => 'tipo',
