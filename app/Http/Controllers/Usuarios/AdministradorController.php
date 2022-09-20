@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Usuarios;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Usuarios\Usuario;
 use App\Models\Usuarios\Administrador;
+use App\Models\Usuarios\Usuario;
 use App\Http\Requests\Usuarios\AdministradorFormRequest;
 
 class AdministradorController extends Controller
@@ -32,7 +32,7 @@ class AdministradorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdministradorFormRequest $request)
     {
         $usuario = new Usuario();
         $usuario->ci = $request->ci;
@@ -54,6 +54,7 @@ class AdministradorController extends Controller
             ->where('usuario.ci','=',$administrador->ci)
             ->get()
             ->first();
+            
         $data = array('data' => $datos, 'error' => []);
         return $data;
     }
@@ -82,7 +83,7 @@ class AdministradorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $ci)
+    public function update(AdministradorFormRequest $request, $ci)
     {
         $usuario = Usuario::findOrFail($ci);
         $usuario->ci = $request->ci;

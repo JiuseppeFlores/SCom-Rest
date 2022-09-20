@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Usuarios;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -32,7 +32,7 @@ class ChefController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChefFormRequest $request)
     {
         $usuario = new Usuario();
         $usuario->ci = $request->ci;
@@ -85,7 +85,7 @@ class ChefController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $ci)
+    public function update(ChefFormRequest $request, $ci)
     {
         $usuario = Usuario::findOrFail($ci);
         $usuario->ci = $request->ci;

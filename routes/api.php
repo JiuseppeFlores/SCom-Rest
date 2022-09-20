@@ -9,6 +9,9 @@ use App\Http\Controllers\Usuarios\AdministradorController;
 use App\Http\Controllers\Usuarios\CamareroController;
 use App\Http\Controllers\Usuarios\ChefController;
 use App\Http\Controllers\Ingrediente\IngredienteController;
+use App\Http\Controllers\Producto\ProductoController;
+use App\Http\Controllers\Producto\BebidaController;
+use App\Http\Controllers\Producto\PlatilloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +55,7 @@ Route::controller(ClienteController::class)->group(function(){
 
 Route::controller(AdministradorController::class)->group(function(){
     Route::get('administradores/', 'index');
-    Route::post('adminisrador/', 'store');
+    Route::post('administrador/', 'store');
     Route::get('administrador/{ci}', 'show');
     Route::put('administrador/{ci}', 'update');
     Route::delete('administrador/{ci}', 'destroy');
@@ -81,3 +84,37 @@ Route::controller(IngredienteController::class)->group(function(){
     Route::put('ingrediente/{codIngrediente}', 'update');
     Route::delete('ingrediente/{codIngrediente}', 'destroy');
 });
+
+Route::controller(ProductoController::class)->group(function(){
+    Route::get('productos/','index');
+    Route::post('producto/','store');
+    Route::get('producto/{idproducto}','show');
+    Route::put('producto/{idproducto}','update');
+    Route::delete('producto/{idproducto}','destroy');
+});
+
+Route::controller(BebidaController::class)->group(function(){
+    Route::get('bebidas/','index');
+    Route::post('bebida/','store');
+    Route::get('bebida/{idproducto}','show');
+    Route::put('bebida/{idproducto}','update');
+    Route::delete('bebida/{idproducto}','destroy');
+});
+
+Route::controller(PlatilloController::class)->group(function(){
+    Route::get('platillos/','index');
+    Route::post('platillo/','store');
+    Route::get('{platillo/idproducto}','show');
+    Route::put('{platillo/idproducto}','update');
+    Route::delete('{platillo/idproducto}','destroy');
+});
+/*
+Route::controller(Controller::class)->group(function(){
+    Route::get('','index');
+    Route::post('','store');
+    Route::get('','show');
+    Route::put('','update');
+    Route::delete('','destroy');
+});
+*/
+

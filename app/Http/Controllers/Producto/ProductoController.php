@@ -12,7 +12,8 @@ class ProductoController extends Controller
 {
     public function index()
     {
-        $datos = DB::table('producto');
+       // $datos = DB::table('producto');
+        $datos=Producto::all();
         $data = array('data' => $datos, 'error' => []);
         //$data = array('response' => 'true','data' => $datos);
         return $data;

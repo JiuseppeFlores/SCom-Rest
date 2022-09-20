@@ -22,9 +22,9 @@ class ClienteController extends Controller
         $datos = DB::table('usuario')
             ->join('cliente','usuario.ci','=','cliente.ci')
             ->get();
-
-        $data = array('response' => 'true','data' => $datos);
+        $data = array('data' => $datos, 'error' => []);
         return $data;
+        
     }
 
     /**
@@ -59,8 +59,8 @@ class ClienteController extends Controller
             ->get()
             ->first();
         
-        $data = array('response' => 'true','data' => $datos);
-        return $data;
+            $data = array('data' => $datos, 'error' => []);
+            return $data;
     }
 
     /**
@@ -77,7 +77,7 @@ class ClienteController extends Controller
             ->get()
             ->first();
 
-        $data = array('response' => 'true','data' => $datos);
+        $data = array('data' => $datos, 'error' => []);
         return $data;
     }
 
@@ -114,8 +114,8 @@ class ClienteController extends Controller
             ->get()
             ->first();
 
-        $data = array('response' => 'true','data' => $datos);
-        return $data;
+            $data = array('data' => $datos, 'error' => []);
+            return $data;
     }
 
     /**
@@ -128,7 +128,8 @@ class ClienteController extends Controller
     {
         $usuario = Usuario::destroy($ci);
         $cliente = Cliente::destroy($ci);
-        $data = array('response' => 'true','data' => array($usuario,$cliente));
+        $data = array('data' => (object)null, 'error' => []);
         return $data;
+        
     }
 }
