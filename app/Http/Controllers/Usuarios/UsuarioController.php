@@ -15,7 +15,7 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         $usuarios = Usuario::all();
         $data = array('data' => $usuarios,'error' => []);
         return $data;
