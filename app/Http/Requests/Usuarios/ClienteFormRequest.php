@@ -34,8 +34,7 @@ class ClienteFormRequest extends FormRequest
             'estado' => ['required','in:habilitado,deshabilitado'],
             'fechaNacimiento' => ['sometimes','nullable','date'],
             'nit' => ['numeric','required','digits_between:5,12'],
-            'email' => ['filled','required','min:3','max:50','alpha_num'],
-            'ciCajeroAdiciona' => ['numeric','sometimes','nullable','digits_between:5,12']
+            'email' => ['filled','required','min:3','max:50','alpha_num']
         ];
     }
     public function attributes(){
@@ -49,8 +48,7 @@ class ClienteFormRequest extends FormRequest
             'estado' => 'estado',
             'fechaNacimiento' => 'fecha de nacimiento',
             'nit' => 'nit',
-            'email' => 'email',
-            'ciCajeroAdiciona' => 'ci cajero'
+            'email' => 'email'
         ];
     }
 }
