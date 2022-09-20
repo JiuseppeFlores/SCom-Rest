@@ -14,7 +14,8 @@ class IngredienteController extends Controller
     //
     public function index()
     {
-        $datos = DB::table('ingrediente');
+        //$datos = DB::table('ingrediente');
+        $datos = Ingrediente::all();
         $data = array('data' => $datos, 'error' => []);
         //$data = array('response' => 'true','data' => $datos);
         return $data;
