@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Usuarios\Usuario;
 use App\Http\Requests\Usuarios\UsuarioFormRequest;
+use App\Http\Requests\Usuarios\LoginFormRequest;
+use Illuminate\Support\Facades\DB;
 
 class UsuarioController extends Controller
 {
@@ -94,5 +96,35 @@ class UsuarioController extends Controller
         $usuario = Usuario::destroy($ci);
         $data = array("response" => "true","data" => array($usuario));
         return $data;
+    }
+
+    public function login(LoginFormRequest $request){
+        $usuario = Usuario::all()->where('nombreUsuario','=',$request->user)->first();
+        if($usuario->contraseña == $request->password){
+            switch($usuario->tipoUsuario){
+                case 'cliente':
+                    $datos = DB::table('usuario')
+                        ->join('cliente','usuario.ci','=','cliente.ci')
+                        ->where('usuario.ci','=',$usuario->ci)
+                        ->get()
+                        ->first();
+                        return $datos;
+                    break;
+                case 'cajero':
+                    break;
+                case 'administrador':
+                    break;
+                case 'chef':
+                    break;
+                case 'camarero':
+                    break;
+            }
+
+            $data = array('data'=>$datos,'error'=>[]);
+            return $data;
+        }else{
+            $data = array('data'=>(object)null,'error'=>['Contraseña incorrecta']);
+            return $data;
+        }
     }
 }

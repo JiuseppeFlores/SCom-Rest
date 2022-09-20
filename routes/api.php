@@ -31,6 +31,7 @@ Route::controller(UsuarioController::class)->group(function(){
     Route::get('usuario/{ci}', 'show');
     Route::put('usuario/{ci}', 'update');
     Route::delete('usuario/{ci}', 'destroy');
+    Route::post('login/','login');
 });
 
 Route::controller(CajeroController::class)->group(function(){
