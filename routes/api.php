@@ -51,7 +51,7 @@ Route::controller(ClienteController::class)->group(function(){
 
 Route::controller(AdministradorController::class)->group(function(){
     Route::get('administradores/', 'index');
-    Route::post('adminisrador/', 'store');
+    Route::post('administrador/', 'store');
     Route::get('administrador/{ci}', 'show');
     Route::put('administrador/{ci}', 'update');
     Route::delete('administrador/{ci}', 'destroy');
@@ -80,3 +80,4 @@ Route::controller(IngredienteController::class)->group(function(){
     Route::put('ingrediente/{codIngrediente}', 'update');
     Route::delete('ingrediente/{codIngrediente}', 'destroy');
 });
+
