@@ -108,7 +108,8 @@ class UsuarioController extends Controller
                         ->where('usuario.ci','=',$usuario->ci)
                         ->get()
                         ->first();
-                        return $datos;
+                        $data = array('data' => $datos, 'error' => []);
+                        return $data;
                     break;
                 case 'cajero':
                     break;
