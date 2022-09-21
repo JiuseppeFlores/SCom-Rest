@@ -101,27 +101,12 @@ class UsuarioController extends Controller
     public function login(LoginFormRequest $request){
         $usuario = Usuario::all()->where('nombreUsuario','=',$request->user)->first();
         if($usuario->contraseña == $request->password){
-            switch($usuario->tipoUsuario){
-                case 'cliente':
-                    $datos = DB::table('usuario')
-                        ->join('cliente','usuario.ci','=','cliente.ci')
+            $datos = DB::table('usuario')
+                        ->join($usuario->tipoUsuario,'usuario.ci','=',$usuario->tipoUsuario.'.ci')
                         ->where('usuario.ci','=',$usuario->ci)
                         ->get()
                         ->first();
-                        $data = array('data' => $datos, 'error' => []);
-                        return $data;
-                    break;
-                case 'cajero':
-                    break;
-                case 'administrador':
-                    break;
-                case 'chef':
-                    break;
-                case 'camarero':
-                    break;
-            }
-
-            $data = array('data'=>$datos,'error'=>[]);
+            $data = array('data' => $datos, 'error' => []);
             return $data;
         }else{
             $data = array('data'=>(object)null,'error'=>['Contraseña incorrecta']);
