@@ -43,6 +43,7 @@ class CajeroController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
+        $usuario->tipoUsuario = 'cajero';
         $usuario->save();
 
         $cajero = new Cajero();

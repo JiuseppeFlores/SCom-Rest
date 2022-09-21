@@ -5,6 +5,7 @@ namespace App\Models\Usuarios;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Usuarios\Cliente;
+use App\Models\Factura\Factura;
 
 class Cajero extends Model
 {

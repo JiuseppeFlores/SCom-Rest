@@ -43,6 +43,7 @@ class ChefController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
+        $usuario->tipoUsuario = 'chef';
         $usuario->save();
 
         $chef = new Chef();

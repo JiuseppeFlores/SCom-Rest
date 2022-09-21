@@ -44,6 +44,7 @@ class ClienteController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
+        $usuario->tipoUsuario = 'cliente';
         $usuario->save();
 
         $cliente = new Cliente();

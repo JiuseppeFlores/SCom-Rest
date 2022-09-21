@@ -43,6 +43,7 @@ class AdministradorController extends Controller
         $usuario->apellidoPaterno = $request->apellidoPaterno;
         $usuario->apellidoMaterno = $request->apellidoMaterno;
         $usuario->estado = $request->estado;
+        $usuario->tipoUsuario = 'administrador';
         $usuario->save();
 
         $administrador = new Administrador();

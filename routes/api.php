@@ -12,6 +12,9 @@ use App\Http\Controllers\Ingrediente\IngredienteController;
 use App\Http\Controllers\Producto\ProductoController;
 use App\Http\Controllers\Producto\BebidaController;
 use App\Http\Controllers\Producto\PlatilloController;
+use App\Http\Controllers\Factura\FacturaController;
+use App\Http\Controllers\Pedido\PedidoController;
+use App\Http\Controllers\Mesa\MesaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,4 +120,29 @@ Route::controller(Controller::class)->group(function(){
     Route::delete('','destroy');
 });
 */
+
+
+Route::controller(FacturaController::class)->group(function(){
+    Route::get('facturas/','index');
+    Route::post('factura/','store');
+    Route::get('factura/{codfactura}','show');
+    Route::put('factura/{codfactura}','update');
+    Route::delete('factura/{codfactura}','destroy');
+});
+
+Route::controller(PedidoController::class)->group(function(){
+    Route::get('pedidos/','index');
+    Route::post('pedido/','store');
+    Route::get('pedido/{idpedido}','show');
+    Route::put('pedido/{idpedido}','update');
+    Route::delete('pedido/{idpedido}','destroy');
+});
+
+Route::controller(MesaController::class)->group(function(){
+    Route::get('mesas/','index');
+    Route::post('mesa/','store');
+    Route::get('mesa/{nroMesa}','show');
+    Route::put('mesa/{nroMesa}','update');
+    Route::delete('mesa/{nroMesa}','destroy');
+});
 

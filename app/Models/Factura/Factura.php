@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Usuarios\Cliente;
 use App\Models\Usuarios\Cajero;
+use App\Models\Pedido\Pedido;
 
 class Factura extends Model
 {
@@ -20,6 +21,10 @@ class Factura extends Model
     }
     public function clientes(){
         return $this->belongsTo(Cliente::class,'ciCliente','ci');
+    }
+    public function pedidos()
+    {
+        return $this->hasMany(Factura::class,'codFactura','codFactura');
     }
 
 }

@@ -37,8 +37,10 @@ class FacturaController extends Controller
 
         $factura->save();
 
-        $data = array('response' => 'true','data' => $factura);
+        $data = array('data' => $factura,'error' => []);
         return $data;
+
+        
     }
 
     /**
@@ -51,7 +53,7 @@ class FacturaController extends Controller
     {
         $factura = Factura::find($id);
         
-        $data = array('response' => 'true','data' => $factura);
+        $data = array('data' => $factura,'error' => []);
         return $data;
     }
 
@@ -71,8 +73,10 @@ class FacturaController extends Controller
      
 
         $factura->save();
-        $data = array('response' => 'true','data' => $factura);
+        $data = array('data' => $factura,'error' => []);
         return $data;
+
+        
     }
 
     /**
@@ -84,7 +88,8 @@ class FacturaController extends Controller
     public function destroy($codFactura)
     {
         $factura = Factura::destroy($codFactura);
-        $data = array("response" => "true","data" => array($factura));
+
+        $data = array('data' => $factura,'error' => []);
         return $data;
     }
 }
