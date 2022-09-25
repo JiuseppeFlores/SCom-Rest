@@ -58,7 +58,7 @@ class PlatilloController extends Controller
         ->get();
 
         //$platillo -> join($ingredientes)
-        $data = array('data' => [$platillo, $ingredientes ] , 'error' => []);
+        $data = array('data' => array_push($platillo, $ingredientes) , 'error' => []);
         return $data;
     }
 
