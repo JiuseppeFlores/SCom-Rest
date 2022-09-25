@@ -55,9 +55,8 @@ class PlatilloController extends Controller
         $ingredientes = DB::table('tiene')
         ->join('ingrediente','ingrediente.codingrediente','=','tiene.codingrediente')
         ->where('idProducto','=',$platillo->idProducto)
-        ->get()
-        ->first();
-        
+        ->get();
+
         //$platillo -> join($ingredientes)
         $data = array('data' => $platillo,'ingredientes' => $ingredientes  , 'error' => []);
         return $data;
