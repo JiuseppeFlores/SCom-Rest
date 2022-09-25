@@ -75,14 +75,17 @@ class ChefController extends Controller
             ->where('usuario.ci','=',$ci)
             ->get()
             ->first();
+
         $ingredientes = DB::table('solicita')
             ->join('ingrediente', 'ingrediente.codingrediente','=','solicita.codingrediente')
             ->where('ciChef','=',$chef->ci)
             ->get();
+
         $productos = DB::table('cambiahabilitacion')
             ->join('producto', 'producto.idproducto','=','cambiahabilitacion.idproducto')
             ->where('ciChef','=',$chef->ci)
             ->get();
+            
         $data = array('data' => $chef,'ingredientes' => $ingredientes,'productos' => $productos,'error' => []);
 
         return $data;

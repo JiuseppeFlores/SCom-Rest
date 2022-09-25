@@ -54,10 +54,12 @@ class PedidoController extends Controller
     public function show($idpedido)
     {
         $pedido = Pedido::find($idpedido);
+        
         $productos = DB::table('pedido_producto')
             ->join('idproducto','producto.idproducto','=','pedido_producto.idproducto')
             ->where('idpedido','=',$pedido->idpedido)
             ->get();
+
         $data = array('data' => $pedido,'productos' =>$productos,'error' => []);
         return $data;
     }

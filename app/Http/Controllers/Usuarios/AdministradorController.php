@@ -76,8 +76,7 @@ class AdministradorController extends Controller
         $usuarios = DB::table('gestiona')
             ->join('usuario','usuario.ci','=','gestiona.ciUsuario')
             ->where('ciAdministrador','=',$admin->ci)
-            ->get()
-            ->first();
+            ->get();
         
         $data = array('data' => $admin,'usuarios' => $usuarios, 'error' => []);
         return $data;
