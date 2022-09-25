@@ -48,13 +48,13 @@ class PlatilloController extends Controller
     {
         $platillo = DB::table('producto')
         ->join('platillo','producto.idproducto','=','platillo.idproducto')
-        ->where('producto.idproducto','=',$idproducto)
+        ->where('idproducto','=',$idproducto)
         ->get()
         ->first();
 
         $ingredientes = DB::table('tiene')
         ->join('ingrediente','ingrediente.codingrediente','=','tiene.codingrediente')
-        ->where('idProducto','=',$platillo->idProducto)
+        ->where('idproducto','=',$platillo->idproducto)
         ->get();
 
         //$platillo -> join($ingredientes)
