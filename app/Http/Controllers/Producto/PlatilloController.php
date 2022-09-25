@@ -57,8 +57,8 @@ class PlatilloController extends Controller
         ->where('idProducto','=',$platillo->idProducto)
 
         //$platillo -> join($ingredientes)
-        
-        $data = array('data' => [$platillo, $ingredientes], 'error' => []);
+        array_push()
+        $data = array('data' => $platillo,'ingredientes' => $ingredientes  , 'error' => []);
         return $data;
     }
 
