@@ -56,7 +56,9 @@ class PlatilloController extends Controller
         ->join('ingrediente','ingrediente.codingrediente','=','tiene.codingrediente')
         ->where('idProducto','=',$platillo->idProducto)
 
-        $data = array('data' => $platillo => $ingredientes, 'error' => []);
+        //$platillo -> join($ingredientes)
+        
+        $data = array('data' => array_push($platillo, $ingredientes), 'error' => []);
         return $data;
     }
 
