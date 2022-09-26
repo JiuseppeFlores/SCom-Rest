@@ -107,9 +107,9 @@ Route::controller(BebidaController::class)->group(function(){
 Route::controller(PlatilloController::class)->group(function(){
     Route::get('platillos/','index');
     Route::post('platillo/','store');
-    Route::get('{platillo/idproducto}','show');
-    Route::put('{platillo/idproducto}','update');
-    Route::delete('{platillo/idproducto}','destroy');
+    Route::get('platillo/{idproducto}','show');
+    Route::put('platillo/{idproducto}','update');
+    Route::delete('platillo/{idproducto}','destroy');
 });
 /*
 Route::controller(Controller::class)->group(function(){
