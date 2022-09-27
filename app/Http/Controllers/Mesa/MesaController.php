@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Mesa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Mesa\Mesa;
+use App\Http\Requests\Mesa\MesaFormRequest;
 
 class MesaController extends Controller
 {
@@ -91,7 +92,7 @@ class MesaController extends Controller
     {
         $mesa = Mesa::destroy($nroMesa);
 
-        $data = array('data' => $mesa,'error' => []);
+        $data = array('data' => (object)null, 'error' => []);
         return $data;
     }
 }

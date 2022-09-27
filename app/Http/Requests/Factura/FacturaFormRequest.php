@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Factura;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Api\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class FacturaFormRequest extends FormRequest
 {
@@ -32,7 +34,7 @@ class FacturaFormRequest extends FormRequest
     public function attributes()
     {
         return [
-            'codFactura' => 'codigo de factura',
+            'codfactura' => 'codigo de factura',
             'ciCajero' => 'CI de el Cajero',
             'ciCliente' => 'CI de el Cliente'
         

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Mesa;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Api\FormRequest;
 use Illuminate\Validation\Rule;
 
 class MesaFormRequest extends FormRequest
@@ -27,7 +27,7 @@ class MesaFormRequest extends FormRequest
         return [
             'nroMesa' => ['numeric','required','digits_between:1,12',Rule::unique('mesa')->ignore($this->route('nroMesa'),'nroMesa')],
             'estado' => ['required','in:habilitado,deshabilitado'],
-            'idPedido' => ['numeric','required','digits_between:1,12'],
+            'idpedido' => ['numeric','required','digits_between:1,12'],
             'ciCamarero' => ['numeric','required','digits_between:1,12']
         ];
     }
@@ -36,7 +36,7 @@ class MesaFormRequest extends FormRequest
         return [
             'nroMesa' => 'Numero de mesa',
             'estado' => 'estado',
-            'idPedido' => 'codigo de el pedido',
+            'idpedido' => 'codigo de el pedido',
             'ciCamarero' => 'CI de el Camarero'
         
         ];

@@ -12,7 +12,7 @@ class Factura extends Model
 {
     use HasFactory;
     protected $table = 'factura';
-    protected $primaryKey = 'codFactura';
+    protected $primaryKey = 'codfactura';
     public $incrementing = false;
     public $timestamps = false;
    

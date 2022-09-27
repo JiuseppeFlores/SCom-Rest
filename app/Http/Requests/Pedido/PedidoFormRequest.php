@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests\Pedido;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Api\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PedidoFormRequest extends FormRequest
 {
@@ -24,11 +25,11 @@ class PedidoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'idPedido' => ['numeric','required','digits_between:1,12',Rule::unique('pedido')->ignore($this->route('idPedido'),'idPedido')],
-            'estado' => ['required','in:habilitado,deshabilitado'],
+            'idpedido' => ['numeric','required','digits_between:1,12',Rule::unique('pedido')->ignore($this->route('idpedido'),'idpedido')],
+            'estado' => ['required','in:vendido,cancelado'],
             'fecha' => ['required','date'],
             'ciCamarero' => ['numeric','required','digits_between:1,12'],
-            'codFactura' => ['numeric','required','digits_between:1,12'],
+            'codfactura' => ['numeric','required','digits_between:1,12'],
             'ciChef' => ['numeric','required','digits_between:1,12']
             
         ];
@@ -36,11 +37,11 @@ class PedidoFormRequest extends FormRequest
     public function attributes()
     {
         return [
-            'idPedido' => 'codigo de el pedido',
+            'idpedido' => 'codigo de el pedido',
             'estado' => 'estado',
             'fecha' => 'fecha',
             'ciCamarero' => 'CI de el Camarero',
-            'codFactura' => 'Condigo de la factura',
+            'codfactura' => 'Condigo de la factura',
             'ciChef' => 'CI de el Chef'
         
         ];

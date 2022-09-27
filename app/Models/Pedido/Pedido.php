@@ -12,7 +12,7 @@ class Pedido extends Model
 {
     use HasFactory;
     protected $table = 'pedido';
-    protected $primaryKey = 'idPedido';
+    protected $primaryKey = 'idpedido';
     
     public $timestamps = false;
 
@@ -22,7 +22,7 @@ public function camareros(){
 }
 
 public function facturas(){
-    return $this->belongsTo(Factura::class,'codFactura','codFactura');
+    return $this->belongsTo(Factura::class,'codfactura','codfactura');
 }
 
 public function chefs(){

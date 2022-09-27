@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Pedido\Pedido;
+use App\Http\Requests\Pedido\PedidoFormRequest;
 
 class PedidoController extends Controller
 {
@@ -34,7 +35,7 @@ class PedidoController extends Controller
         $pedido->estado = $request->estado;
         $pedido->fecha = $request->fecha;
         $pedido->ciCamarero = $request->ciCamarero;
-        $pedido->codFactura = $request->codFactura;
+        $pedido->codfactura = $request->codfactura;
         $pedido->ciChef = $request->ciChef;
       
 
@@ -79,7 +80,7 @@ class PedidoController extends Controller
         $pedido->estado = $request->estado;
         $pedido->fecha = $request->fecha;
         $pedido->ciCamarero = $request->ciCamarero;
-        $pedido->codFactura = $request->codFactura;
+        $pedido->codfactura = $request->codfactura;
         $pedido->ciChef = $request->ciChef;
      
 
@@ -100,7 +101,7 @@ class PedidoController extends Controller
     {
         $pedido = Pedido::destroy($idpedido);
 
-        $data = array('data' => $pedido,'error' => []);
+        $data = array('data' => (object)null, 'error' => []);
         return $data;
     }
 }

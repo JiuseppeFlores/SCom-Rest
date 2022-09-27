@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Factura\Factura;
+use App\Http\Requests\Factura\FacturaFormRequest;
 
 class FacturaController extends Controller
 {
@@ -30,7 +31,7 @@ class FacturaController extends Controller
     public function store(FacturaFormRequest $request)
     {
         $factura = new Factura();
-        $factura->codFactura = $request->codFactura;
+        $factura->codfactura = $request->codfactura;
         $factura->ciCajero = $request->ciCajero;
         $factura->ciCliente = $request->ciCliente;
       
@@ -49,9 +50,9 @@ class FacturaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($codfactura)
     {
-        $factura = Factura::find($id);
+        $factura = Factura::find($codfactura);
         
         $data = array('data' => $factura,'error' => []);
         return $data;
@@ -64,10 +65,10 @@ class FacturaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(FacturaFormRequest $request, $codFactura)
+    public function update(FacturaFormRequest $request, $codfactura)
     {
-        $factura = Factura::findOrFail($codFactura);
-        $factura->codFactura = $request->codFactura;
+        $factura = Factura::findOrFail($codfactura);
+        $factura->codfactura = $request->codfactura;
         $factura->ciCajero = $request->ciCajero;
         $factura->ciCliente = $request->ciCliente;
      
@@ -85,11 +86,11 @@ class FacturaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($codFactura)
+    public function destroy($codfactura)
     {
-        $factura = Factura::destroy($codFactura);
+        $factura = Factura::destroy($codfactura);
 
-        $data = array('data' => $factura,'error' => []);
+        $data = array('data' => (object)null, 'error' => []);
         return $data;
     }
 }
