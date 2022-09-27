@@ -10,6 +10,6 @@ class Ingrediente extends Model
     use HasFactory;
     protected $table = 'ingrediente';
     protected $primaryKey = 'codingrediente';
-    public $incrementing = false;
+    public $incrementing = true;
     public $timestamps = false;
 }
