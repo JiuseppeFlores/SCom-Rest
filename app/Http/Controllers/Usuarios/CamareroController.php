@@ -31,7 +31,7 @@ class CamareroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CamareroFormRequest $request)
     {
         $usuario = new Usuario();
         $usuario->ci = $request->ci;
@@ -85,7 +85,7 @@ class CamareroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $ci)
+    public function update(CamareroFormRequest $request, $ci)
     {
         $usuario = Usuario::findOrFail($ci);
         $usuario->ci = $request->ci;
