@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pedido;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Pedido\Pedido;
 
@@ -56,7 +57,7 @@ class PedidoController extends Controller
         $pedido = Pedido::find($idpedido);
         
         $productos = DB::table('pedido_producto')
-            ->join('idproducto','producto.idproducto','=','pedido_producto.idproducto')
+            ->join('producto','producto.idproducto','=','pedido_producto.idproducto')
             ->where('idpedido','=',$pedido->idpedido)
             ->get();
 

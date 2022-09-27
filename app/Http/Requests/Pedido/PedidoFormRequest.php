@@ -24,7 +24,26 @@ class PedidoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'idPedido' => ['numeric','required','digits_between:1,12',Rule::unique('pedido')->ignore($this->route('idPedido'),'idPedido')],
+            'estado' => ['required','in:habilitado,deshabilitado'],
+            'fecha' => ['required','date'],
+            'ciCamarero' => ['numeric','required','digits_between:1,12'],
+            'codFactura' => ['numeric','required','digits_between:1,12'],
+            'ciChef' => ['numeric','required','digits_between:1,12']
+            
         ];
     }
+    public function attributes()
+    {
+        return [
+            'idPedido' => 'codigo de el pedido',
+            'estado' => 'estado',
+            'fecha' => 'fecha',
+            'ciCamarero' => 'CI de el Camarero',
+            'codFactura' => 'Condigo de la factura',
+            'ciChef' => 'CI de el Chef'
+        
+        ];
+    }
+
 }

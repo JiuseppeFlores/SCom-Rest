@@ -24,7 +24,19 @@ class FacturaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'codfactura' => ['numeric','required','digits_between:1,12',Rule::unique('factura')->ignore($this->route('codfactura'),'codfactura')],
+            'ciCajero' => ['numeric','required','digits_between:1,12'],
+            'ciCliente' => ['numeric','required','digits_between:1,12']
         ];
     }
+    public function attributes()
+    {
+        return [
+            'codFactura' => 'codigo de factura',
+            'ciCajero' => 'CI de el Cajero',
+            'ciCliente' => 'CI de el Cliente'
+        
+        ];
+    }
+
 }

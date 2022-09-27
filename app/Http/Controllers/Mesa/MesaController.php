@@ -51,6 +51,7 @@ class MesaController extends Controller
      */
     public function show($nroMesa)
     {
+        
         $mesa = Mesa::find($nroMesa);
         
         $data = array('data' => $mesa,'error' => []);
