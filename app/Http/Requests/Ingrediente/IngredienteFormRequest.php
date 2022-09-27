@@ -26,7 +26,7 @@ class IngredienteFormRequest extends FormRequest
     {
         return [
             //
-            'codIngrediente' => ['numeric','required','digits_between:1,12',Rule::unique('ingrediente')->ignore($this->route('codIngrediente'),'codIngrediente')],
+            'codingrediente' => ['numeric','required','digits_between:1,12',Rule::unique('ingrediente')->ignore($this->route('codingrediente'),'codIngrediente')],
             'nombre' => ['filled','required','min:3','max:30'],
             'cantidad' => ['numeric','required','digits_between:1,12'],
             'tipo' => ['filled','required','min:1','max:30']
@@ -35,7 +35,7 @@ class IngredienteFormRequest extends FormRequest
     public function attributes()
     {
         return [
-            'codIngrediente' => 'codigo de Ingrediente',
+            'codingrediente' => 'codigo de Ingrediente',
             'nombre' => 'nombre',
             'cantidad' => 'cantidad',
             'tipo' => 'tipo',

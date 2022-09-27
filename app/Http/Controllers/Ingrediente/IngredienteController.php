@@ -43,10 +43,10 @@ class IngredienteController extends Controller
         $data = array('data' => $ingrediente, 'error' => []);
         return $data;
     }
-    public function update(IngredienteFormRequest $request, $codIngrediente)
+    public function update(IngredienteFormRequest $request, $codingrediente)
     {
-        $ingrediente = Ingrediente::find0rFail($codIngrediente);
-        $ingrediente->codIngrediente = $request->codIngrediente;
+        $ingrediente = Ingrediente::findOrFail($codingrediente);
+        $ingrediente->codingrediente = $request->codingrediente;
         $ingrediente->nombre = $request->nombre;
         $ingrediente->cantidad = $request->cantidad;
         $ingrediente->tipo = $request->tipo;

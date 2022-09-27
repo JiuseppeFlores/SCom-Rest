@@ -83,9 +83,9 @@ Route::controller(ChefController::class)->group(function(){
 Route::controller(IngredienteController::class)->group(function(){
     Route::get('ingredientes/', 'index');
     Route::post('ingrediente/', 'store');
-    Route::get('ingrediente/{codIngrediente}', 'show');
-    Route::put('ingrediente/{codIngrediente}', 'update');
-    Route::delete('ingrediente/{codIngrediente}', 'destroy');
+    Route::get('ingrediente/{codingrediente}', 'show');
+    Route::put('ingrediente/{codingrediente}', 'update');
+    Route::delete('ingrediente/{codingrediente}', 'destroy');
 });
 
 Route::controller(ProductoController::class)->group(function(){
