@@ -42,7 +42,7 @@ class ProductoController extends Controller
     }
     public function update(ProductoFormRequest $request, $idproducto)
     {
-        $producto = Producto::find0rFail($idproducto);
+        $producto = Producto::findOrFail($idproducto);
         $producto->idproducto = $request->idproducto;
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;

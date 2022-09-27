@@ -58,14 +58,14 @@ class BebidaController extends Controller
 
     public function update(BebidaFormRequest $request, $idproducto)
     {
-        $producto = Producto::find0rFail($idproducto);
+        $producto = Producto::findOrFail($idproducto);
         $producto->idproducto = $request->idproducto;
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
         $producto->update();
 
-        $bebida = Bebida::find0rFail($idproducto);
+        $bebida = Bebida::findOrFail($idproducto);
         $bebida->idproducto = $request->idproducto;
         $bebida->gradoAlcoholico = $request->gradoAlcoholico;
         $bebida->update();
