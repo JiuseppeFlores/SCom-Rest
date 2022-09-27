@@ -18,7 +18,7 @@ class BebidaFormRequest extends FormRequest
             'precio' => ['numeric','required','digits_between:1,12'],
             'nombre' => ['filled','required','min:1','max:40'],
             'estado' => ['filled','required','min:1','max:30','in:habilitado,deshabilitado'],
-            'gradoAlcoholico' => ['requiered','numeric','digits_between:1,12'],
+            'gradoAlcoholico' => ['required','numeric','digits_between:1,12'],
         ];
     }
     public function attributes()
