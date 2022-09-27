@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Mesa;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class MesaFormRequest extends FormRequest
 {

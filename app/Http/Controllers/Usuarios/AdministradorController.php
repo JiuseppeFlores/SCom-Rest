@@ -77,8 +77,8 @@ class AdministradorController extends Controller
             ->join('usuario','usuario.ci','=','gestiona.ciUsuario')
             ->where('ciAdministrador','=',$admin->ci)
             ->get();
-        
-        $data = array('data' => $admin,'usuarios' => $usuarios, 'error' => []);
+
+        $data = array('data' => array($admin,$usuarios), 'error' => []);
         return $data;
     }
 
