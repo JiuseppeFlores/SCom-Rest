@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Usuarios\Usuario;
 use App\Models\Usuarios\Chef;
 use App\Http\Requests\Usuarios\ChefFormRequest;
+use App\Models\Ingrediente\Ingrediente;
 
 class ChefController extends Controller
 {
@@ -86,7 +87,7 @@ class ChefController extends Controller
             ->where('ciChef','=',$chef->ci)
             ->get();
             
-        $data = array('data' => $chef,'ingredientes' => $ingredientes,'productos' => $productos,'error' => []);
+        $data = array('data' => array($chef,$ingredientes,$productos),'error' => []);
 
         return $data;
     }
