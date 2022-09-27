@@ -64,21 +64,21 @@ class PlatilloController extends Controller
 
     public function update(PlatilloFormRequest $request, $idproducto)
     {
-        $producto = Producto::find0rFail($idproducto);
+        $producto = Producto::findOrFail($idproducto);
         $producto->idproducto = $request->idproducto;
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
-        $producto->update();
+        $producto->save();
 
-        $platillo = Platillo::find0rFail($idproducto);
+        $platillo = Platillo::findOrFail($idproducto);
         $platillo->idproducto = $request->idproducto;
         $platillo->stock = $request->stock;
-        $platillo->update();
+        $platillo->save();
 
         $datos = DB::table('producto')
         ->join('platillo','producto.idproducto','=','platillo.idproducto')
-        ->where('producto.idproducto','=',$idproducto)
+        ->where('producto.idproducto','=',$platillo->idproducto)
         ->get()
         ->first();
 
