@@ -36,6 +36,15 @@ class PlatilloController extends Controller
         $ingredientes=$request->ingredientes;
         $platillo->save();
         
+        for($i=0;$i<sizeof($ingredientes);$i++){
+            //DB::table('users')->insert(
+	   // ['email' => 'keval@example.com', 'votes' => 0]
+	//);
+                DB::table('tiene')->insert(
+                    ['codingrediente' => $ingredientes[$i],
+                    'idproducto' => $producto->idproducto]
+                );
+        }
 
         $datos = DB::table('producto')
             ->join('platillo','producto.idproducto','=','platillo.idproducto')
