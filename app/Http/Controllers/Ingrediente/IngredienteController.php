@@ -24,7 +24,7 @@ class IngredienteController extends Controller
     public function store(IngredienteFormRequest $request)
     {
         $ingrediente = new Ingrediente();
-        $ingrediente->codIngrediente = $request->codIngrediente;
+       // $ingrediente->codIngrediente = $request->codIngrediente;
         $ingrediente->nombre = $request->nombre;
         $ingrediente->cantidad = $request->cantidad;
         $ingrediente->tipo = $request->tipo;

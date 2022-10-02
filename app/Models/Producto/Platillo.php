@@ -11,7 +11,7 @@ class Platillo extends Model
     use HasFactory;
     protected $table = 'platillo';
     protected $primaryKey = 'idproducto';
-    public $incrementing = true;
+    public $incrementing = false;
     public $timestamps = false;
 
     public function producto(){
