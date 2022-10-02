@@ -51,7 +51,7 @@ class PlatilloController extends Controller
             ->where('platillo.idproducto','=',$producto->idproducto)
             ->get()
             ->first();
-
+        
         $data = array('data' => array($datos,$ingredientes), 'error' => []);
         return $data; 
     }

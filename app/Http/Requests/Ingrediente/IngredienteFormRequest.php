@@ -29,7 +29,7 @@ class IngredienteFormRequest extends FormRequest
             'codingrediente' => ['numeric','digits_between:1,12',Rule::unique('ingrediente')->ignore($this->route('codingrediente'),'codIngrediente')],
             'nombre' => ['filled','required','min:3','max:30'],
             'cantidad' => ['numeric','required','digits_between:1,12'],
-            'tipo' => ['filled','required','min:1','max:30']
+            'tipo' => ['filled','required','in:tuberculo,hortaliza,fruta,cereal,carne,marisco','min:1','max:30']
         ];
     }
     public function attributes()
