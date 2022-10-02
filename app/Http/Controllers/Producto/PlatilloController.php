@@ -84,9 +84,25 @@ class PlatilloController extends Controller
         $producto->save();
 
         $platillo = Platillo::findOrFail($idproducto);
-        $platillo->idproducto = $request->idproducto;
+        $platillo->idproducto = $producto->idproducto;
         $platillo->stock = $request->stock;
+        $ingredientes=$request->ingredientes;
         $platillo->save();
+
+        DB::table('tiene')
+        ->where('tiene.idproducto','=',$producto->idproducto)
+        ->delete();
+
+
+        for($i=0;$i<sizeof($ingredientes);$i++){
+            //DB::table('users')->insert(
+	   // ['email' => 'keval@example.com', 'votes' => 0]
+	//);
+                DB::table('tiene')->insert(
+                    ['codingrediente' => $ingredientes[$i],
+                    'idproducto' => $producto->idproducto]
+                );
+        }
 
         $datos = DB::table('producto')
         ->join('platillo','producto.idproducto','=','platillo.idproducto')
@@ -94,7 +110,7 @@ class PlatilloController extends Controller
         ->get()
         ->first();
 
-        $data = array('data' => $datos,'error' => []);
+        $data = array('data' => array($datos,$ingredientes),'error' => []);
         return $data;
     }
 
