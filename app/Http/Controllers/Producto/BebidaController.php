@@ -30,13 +30,13 @@ class BebidaController extends Controller
         $producto->save();
 
         $bebida = new Bebida();
-        $bebida->idproducto = $request->idproducto;
+        $bebida->idproducto = $producto->idproducto;
         $bebida->gradoAlcoholico = $request->gradoAlcoholico;
         $bebida->save();
 
         $datos = DB::table('producto')
             ->join('bebida','producto.idproducto','=','bebida.idproducto')
-            ->where('producto.idproducto','=',$bebida->idproducto)
+            ->where('bebida.idproducto','=',$producto->idproducto)
             ->get()
             ->first();
 

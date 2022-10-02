@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Producto\Producto;
 use App\Models\Producto\Platillo;
 use App\Http\Requests\Producto\PlatilloFormRequest;
+use Nette\Utils\Arrays;
 
 class PlatilloController extends Controller
 {
@@ -30,17 +31,19 @@ class PlatilloController extends Controller
         $producto->save();
 
         $platillo = new Platillo();
-        $platillo->idproducto = $request->idproducto;
+        $platillo->idproducto = $producto->idproducto;
         $platillo->stock = $request->stock;
+        $ingredientes=$request->ingredientes;
         $platillo->save();
+        
 
         $datos = DB::table('producto')
             ->join('platillo','producto.idproducto','=','platillo.idproducto')
-            ->where('producto.idproducto','=',$platillo->idproducto)
+            ->where('platillo.idproducto','=',$producto->idproducto)
             ->get()
             ->first();
 
-        $data = array('data' => $datos, 'error' => []);
+        $data = array('data' => array($datos,$ingredientes), 'error' => []);
         return $data; 
     }
 
