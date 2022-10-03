@@ -114,9 +114,18 @@ class PedidoController extends Controller
 
         $pedido->save();
         $data = array('data' => $pedido,'error' => []);
-        return $data;
-
+        return $data;   
+    }
+    public function añadirfactura($codfactura, $idpedido)
+    {
+        $pedido = Pedido::findOrFail($idpedido);
         
+        $pedido->codfactura = $codfactura;
+        
+
+        $pedido->save();
+        $data = array('data' => $pedido,'error' => []);
+        return $data;   
     }
     
 
