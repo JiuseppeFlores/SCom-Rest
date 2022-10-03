@@ -104,4 +104,20 @@ class PedidoController extends Controller
         $data = array('data' => (object)null, 'error' => []);
         return $data;
     }
+
+    public function cambioVendido(PedidoFormRequest $request, $idpedido)
+    {
+        $pedido = Pedido::findOrFail($idpedido);
+        
+        $pedido->estado = 'vendido';
+        
+
+        $pedido->save();
+        $data = array('data' => $pedido,'error' => []);
+        return $data;
+
+        
+    }
+    
+
 }

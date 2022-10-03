@@ -136,6 +136,7 @@ Route::controller(PedidoController::class)->group(function(){
     Route::get('pedido/{idpedido}','show');
     Route::put('pedido/{idpedido}','update');
     Route::delete('pedido/{idpedido}','destroy');
+    Route::put('pedidovendido/{idpedido}','cambioVendido');
 });
 
 Route::controller(MesaController::class)->group(function(){
