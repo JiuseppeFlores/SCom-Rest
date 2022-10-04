@@ -89,7 +89,7 @@ class ChefController extends Controller
             
         $data = array('data' => array($chef,$ingredientes,$productos),'error' => []);*/
 
-        $data = array('data' => $chef);
+        $data = array('data' => $chef,'error' => []);
 
         return $data;
     }
