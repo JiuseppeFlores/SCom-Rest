@@ -28,7 +28,7 @@ class PlatilloController extends Controller
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
-        $producto->tipo = 'platillo';
+        $producto->tipoProducto = 'platillo';
         $producto->save();
 
         $platillo = new Platillo();
@@ -82,7 +82,7 @@ class PlatilloController extends Controller
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
-        $producto->tipo = 'platillo';
+        $producto->tipoProducto = 'platillo';
         $producto->save();
 
         $platillo = Platillo::findOrFail($idproducto);

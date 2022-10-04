@@ -25,7 +25,7 @@ class ProductoController extends Controller
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
-        $producto->tipo = $request->tipo;
+        $producto->tipoProducto = $request->tipoProducto;
         $producto->save();
 
         //$data = array('response' => 'true','data' => $producto);
@@ -47,7 +47,7 @@ class ProductoController extends Controller
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
-        $producto->tipo = $request->tipo;
+        $producto->tipoProducto = $request->tipoProducto;
         $producto->update();
         //$data = array('response' => 'true','data' => $producto);
         $data = array('data' => $producto, 'error' => []);
