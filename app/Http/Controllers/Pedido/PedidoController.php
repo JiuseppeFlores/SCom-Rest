@@ -122,7 +122,7 @@ class PedidoController extends Controller
         $pedido = Pedido::findOrFail($idpedido);
         
         $pedido->estado = 'entregado';
-        $pedido->ciCamarero = $ci;
+        $pedido->ciChef = $ci;
 
         $pedido->save();
         $data = array('data' => $pedido,'error' => []);
