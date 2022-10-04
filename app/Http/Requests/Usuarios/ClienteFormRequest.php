@@ -33,8 +33,9 @@ class ClienteFormRequest extends FormRequest
             'apellidoMaterno' => ['sometimes', 'nullable','alpha','min:3','max:25'],
             'estado' => ['required','in:habilitado,deshabilitado'],
             'fechaNacimiento' => ['sometimes','nullable','date'],
-            'nit' => ['numeric','required','digits_between:5,12'],
-            'email' => ['filled','required','min:3','max:50']
+            'NIT' => ['sometimes', 'nullable','alpha_num','min:3','max:25'],
+            'email' => ['filled','required','min:3','max:50'],
+            'ciCajeroAdiciona' => ['numeric','sometimes', 'nullable','digits_between:5,12']
         ];
     }
     public function attributes(){
@@ -47,8 +48,9 @@ class ClienteFormRequest extends FormRequest
             'apellidoMaterno' => 'apellido materno',
             'estado' => 'estado',
             'fechaNacimiento' => 'fecha de nacimiento',
-            'nit' => 'nit',
-            'email' => 'email'
+            'NIT' => 'NIT',
+            'email' => 'email',
+            'ciCajeroAdiciona' =>  'ci de el Cajero'
         ];
     }
 }

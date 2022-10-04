@@ -136,7 +136,8 @@ Route::controller(PedidoController::class)->group(function(){
     Route::get('pedido/{idpedido}','show');
     Route::put('pedido/{idpedido}','update');
     Route::delete('pedido/{idpedido}','destroy');
-    Route::put('pedidovendido/{idpedido}','cambioVendido');
+    Route::put('pedidovendido/{idpedido}/{codfactura}','cambioVendido');
+    Route::put('pedidoentregado/{idpedido}','cambioEntregado');
     Route::put('pedidoaddfactura/{codfactura}/{idpedido}','añadirfactura');
 });
 

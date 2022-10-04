@@ -49,9 +49,9 @@ class ClienteController extends Controller
 
         $cliente = new Cliente();
         $cliente->ci = $request->ci;
-        $cliente->nit = $request->nit;
+        $cliente->NIT = $request->NIT;
         $cliente->email = $request->email;
-        $cliente->ciCajeroAdiciona = $request->ciCajeroAdiciona;
+        $cliente->ciCajeroAdiciona = 10012;
         $cliente->save();
 
         $datos = DB::table('usuario')
@@ -109,7 +109,7 @@ class ClienteController extends Controller
 
         $cliente = Cliente::findOrFail($ci);
         $cliente->ci = $request->ci;
-        $cliente->nit = $request->nit;
+        $cliente->NIT = $request->NIT;
         $cliente->email = $request->email;
         $cliente->ciCajeroAdiciona = $ciCajeroAdiciona;
         $cliente->update();

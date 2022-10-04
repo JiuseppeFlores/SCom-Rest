@@ -21,7 +21,7 @@ class PedidoController extends Controller
         $data = array('data' => $pedidos,'error' => []);
         return $data;
     }
-
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -32,7 +32,7 @@ class PedidoController extends Controller
     {
         $pedido = new Pedido();
         $pedido->idpedido = $request->idpedido;
-        $pedido->estado = $request->estado;
+        $pedido->estado = 'espera';
         $pedido->fecha = $request->fecha;
         $pedido->ciCamarero = $request->ciCamarero;
         $pedido->codfactura = $request->codfactura;
@@ -105,17 +105,31 @@ class PedidoController extends Controller
         return $data;
     }
 
-    public function cambioVendido(PedidoFormRequest $request, $idpedido)
+    public function cambioVendido($idpedido, $codfactura)
     {
         $pedido = Pedido::findOrFail($idpedido);
         
         $pedido->estado = 'vendido';
+        $pedido->codfactura = $codfactura;
+
+        $pedido->save();
+        $data = array('data' => $pedido,'error' => []);
+        return $data;   
+    }
+
+    public function cambioEntregado($idpedido)
+    {
+        $pedido = Pedido::findOrFail($idpedido);
+        
+        $pedido->estado = 'entregado';
         
 
         $pedido->save();
         $data = array('data' => $pedido,'error' => []);
         return $data;   
     }
+
+
     public function añadirfactura($codfactura, $idpedido)
     {
         $pedido = Pedido::findOrFail($idpedido);
