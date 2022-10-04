@@ -22,7 +22,7 @@ class AdministradorController extends Controller
         $administradores = DB::table('usuario')
             ->join('administrador','usuario.ci','=','administrador.ci')
             ->get();
-        $data = array('data' => $administradores, 'error' => []);
+        $data = array('data' => $administradores);
         return $data;
     }
 
@@ -78,7 +78,7 @@ class AdministradorController extends Controller
             ->where('ciAdministrador','=',$admin->ci)
             ->get();
 
-        $data = array('data' => array($admin,$usuarios), 'error' => []);
+        $data = array('data' => array($admin,$usuarios));
         return $data;
     }
 
