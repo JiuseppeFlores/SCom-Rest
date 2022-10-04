@@ -18,6 +18,7 @@ class PlatilloFormRequest extends FormRequest
             'precio' => ['numeric','required','digits_between:1,12'],
             'nombre' => ['filled','required','min:1','max:40'],
             'estado' => ['filled','required','min:1','max:30','in:habilitado,deshabilitado'],
+            'tipo' =>['required','filled','min:1','max:40','in:platillo,bebida'],
             'stock' => ['required','numeric','digits_between:1,12']
         ];
     }
@@ -28,6 +29,7 @@ class PlatilloFormRequest extends FormRequest
             'precio' => 'precio',
             'nombre' => 'nombre',
             'estado' => 'estado',
+            'tipo' => 'tipo de producto',
             'stock' => 'stock'
         ];
     }

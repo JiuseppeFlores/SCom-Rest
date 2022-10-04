@@ -27,6 +27,7 @@ class BebidaController extends Controller
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
+        $producto->tipo = 'bebida';
         $producto->save();
 
         $bebida = new Bebida();
@@ -63,6 +64,7 @@ class BebidaController extends Controller
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
+        $producto->tipo = 'bebida';
         $producto->update();
 
         $bebida = Bebida::findOrFail($idproducto);
