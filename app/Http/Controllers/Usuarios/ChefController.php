@@ -77,7 +77,7 @@ class ChefController extends Controller
             ->get()
             ->first();
 
-        $ingredientes = DB::table('solicita')
+        /*$ingredientes = DB::table('solicita')
             ->join('ingrediente', 'ingrediente.codingrediente','=','solicita.codingrediente')
             ->where('ciChef','=',$chef->ci)
             ->get();
@@ -87,7 +87,9 @@ class ChefController extends Controller
             ->where('ciChef','=',$chef->ci)
             ->get();
             
-        $data = array('data' => array($chef,$ingredientes,$productos),'error' => []);
+        $data = array('data' => array($chef,$ingredientes,$productos),'error' => []);*/
+
+        $data = array('data' => $chef);
 
         return $data;
     }

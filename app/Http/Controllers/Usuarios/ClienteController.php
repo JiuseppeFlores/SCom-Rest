@@ -77,11 +77,13 @@ class ClienteController extends Controller
             ->where('usuario.ci','=',$ci)
             ->get()
             ->first();
-        $reservas = DB::table('reserva')
+        /*$reservas = DB::table('reserva')
             ->join('nromesa','mesa.nromesa','=','reserva.nromesa')
             ->where('ciCliente','=',$datos->ci)
             ->get();
-        $data = array('data' => $datos,'reservas'=>$reservas, 'error' => []);
+        $data = array('data' => $datos,'reservas'=>$reservas, 'error' => []);*/
+        $data = array('data' => $datos);
+
         return $data;
     }
 
@@ -109,7 +111,7 @@ class ClienteController extends Controller
         $cliente->ci = $request->ci;
         $cliente->nit = $request->nit;
         $cliente->email = $request->email;
-        $cliente->ciCajeroAdiciona = $request->ciCajeroAdiciona;
+        $cliente->ciCajeroAdiciona = $ciCajeroAdiciona;
         $cliente->update();
 
         $datos = DB::table('usuario')
