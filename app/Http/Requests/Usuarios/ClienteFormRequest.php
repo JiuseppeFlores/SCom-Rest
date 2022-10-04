@@ -33,7 +33,7 @@ class ClienteFormRequest extends FormRequest
             'apellidoMaterno' => ['sometimes', 'nullable','alpha','min:3','max:25'],
             'estado' => ['required','in:habilitado,deshabilitado'],
             'fechaNacimiento' => ['sometimes','nullable','date'],
-            'nit' => ['numeric','required','digits_between:5,12'],
+            'nit' => ['numeric','sometimes','nullable','digits_between:5,12'],
             'email' => ['filled','required','min:3','max:50']
         ];
     }

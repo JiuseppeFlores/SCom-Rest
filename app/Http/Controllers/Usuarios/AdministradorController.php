@@ -73,6 +73,19 @@ class AdministradorController extends Controller
             ->where('usuario.ci','=',$ci)
             ->get()
             ->first();
+        
+
+        $data = array('data' => $admin);
+        return $data;
+    } 
+    
+    public function administra($ci)
+    {
+        $admin = DB::table('usuario')
+            ->join('administrador','usuario.ci','=','administrador.ci')
+            ->where('usuario.ci','=',$ci)
+            ->get()
+            ->first();
         $usuarios = DB::table('gestiona')
             ->join('usuario','usuario.ci','=','gestiona.ciUsuario')
             ->where('ciAdministrador','=',$admin->ci)
@@ -81,6 +94,8 @@ class AdministradorController extends Controller
         $data = array('data' => array($admin,$usuarios));
         return $data;
     }
+
+
 
     /**
      * Update the specified resource in storage.
