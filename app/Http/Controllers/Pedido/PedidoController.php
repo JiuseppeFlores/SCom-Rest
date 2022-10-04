@@ -117,12 +117,12 @@ class PedidoController extends Controller
         return $data;   
     }
 
-    public function cambioEntregado($idpedido)
+    public function cambioEntregado($idpedido, $ci)
     {
         $pedido = Pedido::findOrFail($idpedido);
         
         $pedido->estado = 'entregado';
-        
+        $pedido->ciCamarero = $ci;
 
         $pedido->save();
         $data = array('data' => $pedido,'error' => []);
