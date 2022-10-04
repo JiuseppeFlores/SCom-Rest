@@ -52,7 +52,7 @@ class PlatilloController extends Controller
             ->get()
             ->first();
         
-        $data = array('data' => array($datos,$ingredientes), 'error' => []);
+        $data = array('data' => $datos, 'error' => []);
         return $data; 
     }
 
@@ -110,7 +110,7 @@ class PlatilloController extends Controller
         ->get()
         ->first();
 
-        $data = array('data' => array($datos,$ingredientes),'error' => []);
+        $data = array('data' => $datos,'error' => []);
         return $data;
     }
 
