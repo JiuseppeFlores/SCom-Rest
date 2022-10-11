@@ -28,6 +28,7 @@ class PlatilloController extends Controller
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
+        $producto->imagen = $request->imagen;
         $producto->tipoProducto = 'platillo';
         $producto->save();
 
@@ -82,6 +83,7 @@ class PlatilloController extends Controller
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
+        $producto->imagen = $request->imagen;
         $producto->tipoProducto = 'platillo';
         $producto->save();
 

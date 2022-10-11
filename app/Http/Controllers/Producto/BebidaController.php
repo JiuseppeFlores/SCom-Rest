@@ -27,6 +27,8 @@ class BebidaController extends Controller
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
+        $producto->imagen = $request->imagen;
+
         $producto->tipoProducto = 'bebida';
         $producto->save();
 
@@ -64,6 +66,8 @@ class BebidaController extends Controller
         $producto->precio = $request->precio;
         $producto->nombre = $request->nombre;
         $producto->estado = $request->estado;
+        $producto->imagen = $request->imagen;
+
         $producto->tipoProducto = 'bebida';
         $producto->update();
 
