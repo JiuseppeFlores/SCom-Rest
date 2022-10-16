@@ -13,7 +13,7 @@ class Pedido extends Model
     use HasFactory;
     protected $table = 'pedido';
     protected $primaryKey = 'idpedido';
-    
+    public $incrementing = true;
     public $timestamps = false;
 
 

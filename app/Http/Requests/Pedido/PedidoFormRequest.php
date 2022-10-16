@@ -25,13 +25,15 @@ class PedidoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'idpedido' => ['numeric','required','digits_between:1,12',Rule::unique('pedido')->ignore($this->route('idpedido'),'idpedido')],
+            'idpedido' => ['numeric','sometimes','required','digits_between:1,12',Rule::unique('pedido')->ignore($this->route('idpedido'),'idpedido')],
             'estado' => ['sometimes', 'nullable','in:vendido,entregado,espera,cancelado'],
             'fecha' => ['required','date'],
-            'ciCamarero' => ['numeric','required','digits_between:1,12'],
-            'codfactura' => ['numeric','required','digits_between:1,12'],
-            'ciChef' => ['numeric','required','digits_between:1,12']
-            
+            //'ciCamarero' => ['numeric','required','digits_between:1,12'],
+            'ciCamarero' => ['numeric','nullable','digits_between:1,12'],
+            //'codfactura' => ['numeric','required','digits_between:1,12'],
+            'codfactura' => ['numeric','nullable','digits_between:1,12'],
+            //'ciChef' => ['numeric','required','digits_between:1,12']
+            'ciChef' => ['numeric','nullable','digits_between:1,12']
         ];
     }
     public function attributes()

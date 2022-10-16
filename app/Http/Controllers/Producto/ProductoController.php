@@ -12,11 +12,26 @@ class ProductoController extends Controller
 {
     public function index()
     {
-       // $datos = DB::table('producto');
-        $datos=Producto::all();
-        $data = array('data' => $datos, 'error' => []);
-        //$data = array('response' => 'true','data' => $datos);
-        return $data;
+        
+        if(isset($_GET['estado'])){
+            $estado = $_GET['estado'];
+            switch ($estado){
+                case 'habilitado':
+                    $datos=Producto::all()->where('estado','=','habilitado');
+                    $data = array('data' => $datos, 'error' => []);
+                    return $data;
+                    break;
+                case 'deshabilitado':
+                    $datos=Producto::all()->where('estado','=','deshabilitado');
+                    $data = array('data' => $datos, 'error' => []);
+                    return $data;
+                    break;
+            }
+        }else{
+            $datos=Producto::all();
+            $data = array('data' => $datos, 'error' => []);
+            return $data;
+        }
     }
     public function store(ProductoFormRequest $request)
     {
