@@ -138,6 +138,16 @@ class PedidoController extends Controller
         $data = array('data' => $pedido,'error' => []);
         return $data;   
     }
+    public function cambioHabilitado($idpedido)
+    {
+        $pedido = Pedido::findOrFail($idpedido);
+        
+        $pedido->estado = 'habilitado';
+
+        $pedido->save();
+        $data = array('data' => $pedido,'error' => []);
+        return $data;   
+    }
 
 
     public function añadirfactura($codfactura, $idpedido)
