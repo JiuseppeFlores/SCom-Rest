@@ -19,7 +19,8 @@ class OpinionController extends Controller
     }
     public function store(OpinionFormRequest $request){
         $opinion = new Opinion();
-     //   $opinion->idOpinion=$request->idOpinion;
+        $algo = (Opinion::all()->max('idOpinion'))+1;
+        $opinion->idOpinion=$algo;
         $opinion->nombre=$request->nombre;
         $opinion->apellido=$request->apellido;
         $opinion->email=$request->email;
