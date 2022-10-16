@@ -79,6 +79,7 @@ Route::controller(ChefController::class)->group(function(){
     Route::get('chef/{ci}', 'show');
     Route::put('chef/{ci}', 'update');
     Route::delete('chef/{ci}', 'destroy');
+    Route::put('chefSolicita/{ci}/{codIngrediente}','chefSolicita');
 });
 
 Route::controller(IngredienteController::class)->group(function(){
@@ -95,6 +96,9 @@ Route::controller(ProductoController::class)->group(function(){
     Route::get('producto/{idproducto}','show');
     Route::put('producto/{idproducto}','update');
     Route::delete('producto/{idproducto}','destroy');
+    Route::put('productoHabilita/{idproducto}','productoHabilita');
+    Route::put('productoDeshabilita/{idproducto}','productoDeshabilita');
+    
 });
 
 Route::controller(BebidaController::class)->group(function(){

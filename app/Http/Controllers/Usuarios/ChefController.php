@@ -143,4 +143,19 @@ class ChefController extends Controller
         $data = array('data' => (object)null, 'error' => []);
         return $data;
     }
+
+    public function chefSolicita($ci,$codIngrediente){
+        $chef = Chef::findOrFail($ci);
+        $ingrediente = Ingrediente::findOrFail($codIngrediente);
+        $datos = DB::table('solicita')->insert(
+        [
+            'ciChef' => $chef->ci,
+            'codIngrediente' => $ingrediente->codIngrediente
+        ]
+        );
+        $data = array('data' => array($chef,$ingrediente,$datos),'error' => []);
+        return $data;
+    }
+    
+
 }
