@@ -26,7 +26,7 @@ class PedidoFormRequest extends FormRequest
     {
         return [
             'idpedido' => ['numeric','sometimes','required','digits_between:1,12',Rule::unique('pedido')->ignore($this->route('idpedido'),'idpedido')],
-            'estado' => ['sometimes', 'nullable','in:vendido,entregado,espera,cancelado'],
+            'estado' => ['sometimes', 'nullable','in:realizado,vendido,entregado,espera,cancelado'],
             'fecha' => ['required','date'],
             //'ciCamarero' => ['numeric','required','digits_between:1,12'],
             'ciCamarero' => ['numeric','nullable','digits_between:1,12'],

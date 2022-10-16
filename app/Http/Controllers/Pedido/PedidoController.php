@@ -128,6 +128,16 @@ class PedidoController extends Controller
         $data = array('data' => $pedido,'error' => []);
         return $data;   
     }
+    public function cambioRealizado($idpedido)
+    {
+        $pedido = Pedido::findOrFail($idpedido);
+        
+        $pedido->estado = 'realizado';
+
+        $pedido->save();
+        $data = array('data' => $pedido,'error' => []);
+        return $data;   
+    }
 
 
     public function añadirfactura($codfactura, $idpedido)

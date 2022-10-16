@@ -143,6 +143,7 @@ Route::controller(PedidoController::class)->group(function(){
     Route::delete('pedido/{idpedido}','destroy');
     Route::put('pedidovendido/{idpedido}/{codfactura}','cambioVendido');
     Route::put('pedidoentregado/{idpedido}/{ci}','cambioEntregado');
+    Route::put('pedidorealizado/{idpedido}','cambioRealizado');
     Route::put('pedidoaddfactura/{codfactura}/{idpedido}','añadirfactura');
 });
 
