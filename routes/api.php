@@ -149,3 +149,11 @@ Route::controller(MesaController::class)->group(function(){
     Route::delete('mesa/{nroMesa}','destroy');
 });
 
+
+Route::controller(OpinionController::class)->group(function(){
+    Route::get('opiniones/','index');
+    Route::post('opinion/','store');
+    Route::get('opinion/{idOpinion}','show');
+    Route::put('opinion/{idOpinion}','update');
+    Route::delete('opinion/{idOpinion}','destroy');
+});

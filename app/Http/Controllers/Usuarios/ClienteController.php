@@ -111,7 +111,7 @@ class ClienteController extends Controller
         $cliente->ci = $request->ci;
         $cliente->NIT = $request->NIT;
         $cliente->email = $request->email;
-        $cliente->ciCajeroAdiciona = $ciCajeroAdiciona;
+        $cliente->ciCajeroAdiciona = 10012;
         $cliente->update();
 
         $datos = DB::table('usuario')
