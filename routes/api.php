@@ -15,6 +15,7 @@ use App\Http\Controllers\Producto\PlatilloController;
 use App\Http\Controllers\Factura\FacturaController;
 use App\Http\Controllers\Pedido\PedidoController;
 use App\Http\Controllers\Mesa\MesaController;
+use App\Http\Controllers\Opinion\OpinionController;
 
 /*
 |--------------------------------------------------------------------------
