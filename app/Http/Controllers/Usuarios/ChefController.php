@@ -150,7 +150,7 @@ class ChefController extends Controller
         $datos = DB::table('solicita')->insert(
         [
             'ciChef' => $chef->ci,
-            'codIngrediente' => $ingrediente->codIngrediente
+            'codIngrediente' => $ingrediente->codingrediente
         ]
         );
         $data = array('data' => array($chef,$ingrediente,$datos),'error' => []);
