@@ -79,6 +79,7 @@ Route::controller(ChefController::class)->group(function(){
     Route::get('chef/{ci}', 'show');
     Route::put('chef/{ci}', 'update');
     Route::delete('chef/{ci}', 'destroy');
+    Route::put('chefSolicita/{ci}/{codIngrediente}','chefSolicita');
 });
 
 Route::controller(IngredienteController::class)->group(function(){
