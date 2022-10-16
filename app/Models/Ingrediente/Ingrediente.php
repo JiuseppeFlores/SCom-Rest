@@ -4,6 +4,7 @@ namespace App\Models\Ingrediente;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Ingrediente extends Model
 {
@@ -12,4 +13,10 @@ class Ingrediente extends Model
     protected $primaryKey = 'codingrediente';
     public $incrementing = true;
     public $timestamps = false;
+
+    //Relacion muchos a muchos
+
+    public function solicita(){
+        return $this->belongsToMany(DB::table('solicita'),'codIngrediente','codIngrediente');
+    }
 }
