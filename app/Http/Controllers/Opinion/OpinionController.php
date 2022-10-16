@@ -22,7 +22,7 @@ class OpinionController extends Controller
         $opinion->idOpinion=$request->idOpinion;
         $opinion->nombre=$request->nombre;
         $opinion->apellido=$request->apellido;
-        $opinion->correo=$request->correo;
+        $opinion->email=$request->email;
         $opinion->mensaje=$request->mensaje;
         $opinion->ciCliente=$request->ciCliente;
         $opinion->save();
@@ -42,7 +42,7 @@ class OpinionController extends Controller
         $opinion->idOpinion=$request->idOpinion;
         $opinion->nombre=$request->nombre;
         $opinion->apellido=$request->apellido;
-        $opinion->correo=$request->correo;
+        $opinion->email=$request->email;
         $opinion->mensaje=$request->mensaje;
         $opinion->ciCliente=$request->ciCliente;
         $opinion->save();

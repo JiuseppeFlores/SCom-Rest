@@ -29,7 +29,7 @@ class OpinionFormRequest extends FormRequest
             'idOpinion' => ['numeric','digits_between:1,12',Rule::unique('Opinion')->ignore($this->route('idOpinion'),'idOpinion')],
             'nombre' => ['filled','required','min:1','max:200'],
             'apellido' => ['filled','required','min:1','max:200'],
-            'correo' => ['filled','min:1','max:200'],
+            'email' => ['filled','min:1','max:200'],
             'mensaje' => ['filled','min:1','max:10000'],
             'ciCliente' => ['numeric','required','digits_between:1,12']
         ];
@@ -40,7 +40,7 @@ class OpinionFormRequest extends FormRequest
             'idOpinion' => 'Identificador de Opinion',
             'nombre' => 'nombre',
             'apellido' => 'apellido',
-            'correo' => 'correo electronico',
+            'email' => 'email',
             'mensaje' => 'mensaje',
             'ciCliente' => 'ci del cliente'
         
