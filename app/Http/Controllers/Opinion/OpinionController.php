@@ -19,7 +19,7 @@ class OpinionController extends Controller
     }
     public function store(OpinionFormRequest $request){
         $opinion = new Opinion();
-        $opinion->idOpinion=$request->idOpinion;
+     //   $opinion->idOpinion=$request->idOpinion;
         $opinion->nombre=$request->nombre;
         $opinion->apellido=$request->apellido;
         $opinion->email=$request->email;
