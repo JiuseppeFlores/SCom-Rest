@@ -17,13 +17,15 @@ class ProductoController extends Controller
             $estado = $_GET['estado'];
             switch ($estado){
                 case 'habilitado':
-                    $datos=Producto::all()->where('estado','=','habilitado');
-                    $data = array('data' => $datos, 'error' => []);
+                    $datos = Producto::all()->where('estado','=','habilitado');
+                    $converter = collect($datos->values()->all());
+                    $data = array('data' => $converter, 'error' => []);
                     return $data;
                     break;
                 case 'deshabilitado':
                     $datos=Producto::all()->where('estado','=','deshabilitado');
-                    $data = array('data' => $datos, 'error' => []);
+                    $converter = collect($datos->values()->all());
+                    $data = array('data' => $converter, 'error' => []);
                     return $data;
                     break;
             }
