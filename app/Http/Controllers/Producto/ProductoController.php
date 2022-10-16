@@ -63,4 +63,20 @@ class ProductoController extends Controller
         $data = array('data' => (object)null, 'error' => []);
         return $data;
     }
+    public function productoHabilita($idproducto){
+        $producto = Producto::findOrFail($idproducto);
+        $producto->estado = 'habilitado';
+        $producto->save();
+
+        $data = array('data' => $producto, 'error' => []);
+        return $data;
+    }
+    public function productoDeshabilita($idproducto){
+        $producto = Producto::findOrFail($idproducto);
+        $producto->estado = 'deshabilitado';
+        $producto->save();
+
+        $data = array('data' => $producto, 'error' => []);
+        return $data;
+    }
 }

@@ -95,6 +95,9 @@ Route::controller(ProductoController::class)->group(function(){
     Route::get('producto/{idproducto}','show');
     Route::put('producto/{idproducto}','update');
     Route::delete('producto/{idproducto}','destroy');
+    Route::put('productoHabilita/{idproducto}','productoHabilita');
+    Route::put('productoDeshabilita/{idproducto}','productoDeshabilita');
+    
 });
 
 Route::controller(BebidaController::class)->group(function(){
