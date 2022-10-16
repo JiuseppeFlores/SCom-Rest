@@ -31,7 +31,6 @@ class OpinionFormRequest extends FormRequest
             'apellido' => ['filled','required','min:1','max:200'],
             'email' => ['filled','min:1','max:200'],
             'mensaje' => ['filled','min:1','max:10000'],
-            'ciCliente' => ['numeric','required','digits_between:1,12']
         ];
     }
     public function attributes()
@@ -42,7 +41,6 @@ class OpinionFormRequest extends FormRequest
             'apellido' => 'apellido',
             'email' => 'email',
             'mensaje' => 'mensaje',
-            'ciCliente' => 'ci del cliente'
         
         ];
     }

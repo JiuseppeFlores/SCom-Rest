@@ -24,7 +24,6 @@ class OpinionController extends Controller
         $opinion->apellido=$request->apellido;
         $opinion->email=$request->email;
         $opinion->mensaje=$request->mensaje;
-        $opinion->ciCliente=$request->ciCliente;
         $opinion->save();
 
         $data =array('data'=>$opinion,'error'=>[]);
@@ -44,7 +43,6 @@ class OpinionController extends Controller
         $opinion->apellido=$request->apellido;
         $opinion->email=$request->email;
         $opinion->mensaje=$request->mensaje;
-        $opinion->ciCliente=$request->ciCliente;
         $opinion->save();
 
         $data =array('data'=>$opinion,'error'=>[]);
