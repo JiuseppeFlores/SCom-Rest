@@ -162,5 +162,16 @@ class PedidoController extends Controller
         return $data;   
     }
     
+    public function crearPedido(Request $request){
+        /*$pedido = new Pedido();
+        $pedido->estado = $request->estado;
+        $pedido->fecha = $request->fecha;
+        $pedido->save();
 
+        $pedidoProducto = DB::table('pedido_producto')->insert([
+            
+        ]);
+        return $pedido->idpedido;*/
+        print_r( $request->productos);
+    }
 }
