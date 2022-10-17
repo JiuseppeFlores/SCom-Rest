@@ -187,6 +187,6 @@ class PedidoController extends Controller
         $data = array('data' => $pedido->idpedido,'error' => []);
         return $data;*/
         //print_r($request);
-        echo $request;
+        echo $request->productos;
     }
 }
