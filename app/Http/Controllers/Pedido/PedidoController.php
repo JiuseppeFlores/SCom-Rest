@@ -163,15 +163,25 @@ class PedidoController extends Controller
     }
     
     public function crearPedido(Request $request){
-        /*$pedido = new Pedido();
+        $pedido = new Pedido();
         $pedido->estado = $request->estado;
         $pedido->fecha = $request->fecha;
         $pedido->save();
+        
+        $idPedido = $pedido->idpedido;
+        $keys = array_keys($request->productos);
+        for($i=0;$i<count($keys);$i++){
+            $pedidoProducto = DB::table('pedido_producto')->insert([
+                'idpedido' => $idPedido,
+                'idproducto' => $keys[$i],
+                'cantidad' => $request->productos[$keys[$i]]
+            ]); 
+        }
+        $productos = DB::table('pedido_producto')
+                        ->where('idPedido','=',$idPedido)
+                        ->get();
 
-        $pedidoProducto = DB::table('pedido_producto')->insert([
-            
-        ]);
-        return $pedido->idpedido;*/
-        print_r( $request->productos);
+        $data = array('data' => $pedido->idpedido,'error' => []);
+        return $data;
     }
 }
