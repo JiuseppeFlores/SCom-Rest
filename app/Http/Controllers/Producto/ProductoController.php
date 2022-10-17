@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Producto\Producto;
+use App\Models\Producto\Platillo;
+use App\Models\Producto\Bebida;
 use App\Http\Requests\Producto\ProductoFormRequest;
 
 class ProductoController extends Controller
@@ -93,6 +95,23 @@ class ProductoController extends Controller
         $producto->estado = 'deshabilitado';
         $producto->save();
 
+        $data = array('data' => $producto, 'error' => []);
+        return $data;
+    }
+    public function obtenerProducto(Request $request){
+        $producto = Producto::findOrFail($request->idProducto);
+        switch($producto->tipoProducto){
+            case "platillo":
+                $ingrediente = DB::table('tiene')
+                    ->join('ingrediente','ingrediente.codingrediente','=','tiene.codingrediente')
+                    ->where('idproducto','=',$producto->idproducto)->get();
+                $producto->ingredientes = $ingrediente;
+                break;
+            case "bebida":
+                $bebida = Bebida::findOrFail($producto->idproducto);
+                $producto->bebida = $bebida;
+                break;
+        }
         $data = array('data' => $producto, 'error' => []);
         return $data;
     }
