@@ -163,17 +163,17 @@ class PedidoController extends Controller
     }
     
     public function crearPedido(Request $request){
-        /*$pedido = new Pedido();
+        $pedido = new Pedido();
         $pedido->estado = $request->estado;
         $pedido->fecha = $request->fecha;
         $pedido->save();
         
-        $idPedido = $pedido->idpedido;*/
+        $idPedido = $pedido->idpedido;
         
         $productos = (array)json_decode($request->productos);
         $keys = array_keys($productos);
-        echo $keys[0];
-        /*for($i=0;$i<count($keys);$i++){
+        
+        for($i=0;$i<count($keys);$i++){
             $pedidoProducto = DB::table('pedido_producto')->insert([
                 'idpedido' => $idPedido,
                 'idproducto' => $keys[$i],
@@ -185,8 +185,6 @@ class PedidoController extends Controller
                         ->get();
 
         $data = array('data' => $pedido->idpedido,'error' => []);
-        return $data;*/
-        //print_r($request);
-        //echo $request->productos;
+        return $data;
     }
 }
