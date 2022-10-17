@@ -163,7 +163,7 @@ class PedidoController extends Controller
     }
     
     public function crearPedido(Request $request){
-        $pedido = new Pedido();
+        /*$pedido = new Pedido();
         $pedido->estado = $request->estado;
         $pedido->fecha = $request->fecha;
         $pedido->save();
@@ -185,6 +185,7 @@ class PedidoController extends Controller
                         ->get();
 
         $data = array('data' => $pedido->idpedido,'error' => []);
-        return $data;
+        return $data;*/
+        print_r($request);
     }
 }
