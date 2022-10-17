@@ -169,12 +169,15 @@ class PedidoController extends Controller
         $pedido->save();
         
         $idPedido = $pedido->idpedido;
-        $keys = array_keys($request->productos);
+        
+        $productos = (array)json_decode($request->productos);
+        $keys = array_keys($productos);
+
         for($i=0;$i<count($keys);$i++){
             $pedidoProducto = DB::table('pedido_producto')->insert([
                 'idpedido' => $idPedido,
                 'idproducto' => $keys[$i],
-                'cantidad' => $request->productos[$keys[$i]]
+                'cantidad' => $productos[$keys[$i]]
             ]); 
         }
         $productos = DB::table('pedido_producto')
