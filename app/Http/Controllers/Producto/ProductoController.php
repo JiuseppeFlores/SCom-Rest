@@ -103,13 +103,18 @@ class ProductoController extends Controller
         switch($producto->tipoProducto){
             case "platillo":
                 $ingrediente = DB::table('tiene')
+                    ->select('ingrediente.nombre')
                     ->join('ingrediente','ingrediente.codingrediente','=','tiene.codingrediente')
                     ->where('idproducto','=',$producto->idproducto)->get();
-                $producto->ingredientes = $ingrediente;
+                $ingredientes = array();
+                for( $i=0 ; $i < count($ingrediente) ; $i++){
+                    array_push($ingredientes,$ingrediente[$i]->nombre);
+                }
+                $producto->ingredientes = $ingredientes;
                 break;
             case "bebida":
                 $bebida = Bebida::findOrFail($producto->idproducto);
-                $producto->bebida = $bebida;
+                $producto->gradoAlcoholico = $bebida->gradoAlcoholico;
                 break;
         }
         $data = array('data' => $producto, 'error' => []);
