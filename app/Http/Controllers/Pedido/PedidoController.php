@@ -199,6 +199,10 @@ class PedidoController extends Controller
     }
 
     function confirmarPedido(Request $request){
-        return array("response" => true,"idPedido" => $request->idPedido, "ciCamarero" => $request->ciCamarero);
+        $pedido = Pedido::findOrFail($request->idPedido);
+        $pedido->ciCamarero = $request->ciCamarero;
+        $pedido->estado = "habilitado";
+        $pedido->save();
+        return array("response" => true);
     }
 }
