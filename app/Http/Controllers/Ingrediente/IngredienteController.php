@@ -56,12 +56,21 @@ class IngredienteController extends Controller
         $data = array('data' => $ingrediente, 'error' => []);
         return $data;
     }
+
     public function destroy($codIngrediente)
     {
         $ingrediente = Ingrediente::destroy($codIngrediente);
 
         //$data = array("response" => "true","data" => array($ingrediente));
         $data = array('data' => (object)null, 'error' => []);
+        return $data;
+    }
+
+    public function ingredienteAumentar($codingrediente){
+        $ingrediente = Ingrediente::findOrFail($codingrediente);
+        $ingrediente->cantidad =$ingrediente->cantidad+50;
+        $ingrediente->save();
+        $data = array('data' => $ingrediente->codingrediente , 'error' => []);
         return $data;
     }
 }

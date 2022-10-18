@@ -89,6 +89,7 @@ Route::controller(IngredienteController::class)->group(function(){
     Route::get('ingrediente/{codingrediente}', 'show');
     Route::put('ingrediente/{codingrediente}', 'update');
     Route::delete('ingrediente/{codingrediente}', 'destroy');
+    Route::put('ingredienteAumentar/{codingrediente}','ingredienteAumentar');
 });
 
 Route::controller(ProductoController::class)->group(function(){
