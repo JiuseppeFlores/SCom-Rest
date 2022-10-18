@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Pedido\Pedido;
+use App\Models\Producto\Producto;
 use App\Http\Requests\Pedido\PedidoFormRequest;
 
 class PedidoController extends Controller
@@ -187,5 +188,14 @@ class PedidoController extends Controller
 
         $data = array('data' => $pedido->idpedido,'error' => []);
         return $data;
+    }
+
+    function obtenerPedido(Request $request){
+        $pedido = Pedido::findOrFail($request->idPedido);
+        $pedidoProducto = DB::table('pedido_producto')
+            ->join('producto','producto.idproducto','=','pedido_producto.idproducto')
+            ->where('idpedido','=',$pedido->idpedido)->get();
+        //$productos = Producto::where('idproducto','=',$pedido->idpedido)->get();
+        return $pedidoProducto;
     }
 }
