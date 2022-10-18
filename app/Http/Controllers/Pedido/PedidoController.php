@@ -166,6 +166,7 @@ class PedidoController extends Controller
         $pedido = new Pedido();
         $pedido->estado = $request->estado;
         $pedido->fecha = $request->fecha;
+        $pedido->idMesa = $request->idMesa;
         $pedido->save();
         
         $idPedido = $pedido->idpedido;
