@@ -146,6 +146,7 @@ class ChefController extends Controller
 
     public function mostrarSolicita(){
         $datos = DB::table('solicita')
+        ->join('ingrediente','solicita.codingrediente','=','ingrediente.codingrediente')
         ->get();
         $data = array('data' => $datos,'error' => []);
         return $data;
