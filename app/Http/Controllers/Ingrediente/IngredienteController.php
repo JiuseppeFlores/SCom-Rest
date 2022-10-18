@@ -66,7 +66,15 @@ class IngredienteController extends Controller
         return $data;
     }
 
-    
+    public function ingredienteQuitar($codingrediente,$cantidad){
+        $ingrediente = Ingrediente::findOrFail($codingrediente);
+        if($ingrediente->cantidad>=$cantidad){
+            $ingrediente->cantidad =$ingrediente->cantidad-$cantidad;
+            $ingrediente->save();
+        }
+        $data = array('data' => $ingrediente->codingrediente , 'error' => []);
+        return $data;
+    }
 
     public function ingredienteAumentar($codingrediente){
         $ingrediente = Ingrediente::findOrFail($codingrediente);
