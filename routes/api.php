@@ -149,6 +149,10 @@ Route::controller(PedidoController::class)->group(function(){
     Route::put('pedidohabilitado/{idpedido}','cambioHabilitado');
     Route::put('pedidoaddfactura/{codfactura}/{idpedido}','añadirfactura');
     Route::post('crearpedido/','crearPedido');
+    Route::post('obtenerPedido/','obtenerPedido');
+    Route::post('confirmarPedido/','confirmarPedido');
+    Route::post('cancelarPedido/','cancelarPedido');
+    Route::post('entregarPedido/','entregarPedido');
 });
 
 Route::controller(MesaController::class)->group(function(){

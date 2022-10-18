@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Pedido\Pedido;
+use App\Models\Producto\Producto;
 use App\Http\Requests\Pedido\PedidoFormRequest;
 
 class PedidoController extends Controller
@@ -188,5 +189,35 @@ class PedidoController extends Controller
 
         $data = array('data' => $pedido->idpedido,'error' => []);
         return $data;
+    }
+
+    function obtenerPedido(Request $request){
+        $pedido = Pedido::findOrFail($request->idPedido);
+        $pedido->productos = DB::table('pedido_producto')
+            ->join('producto','producto.idproducto','=','pedido_producto.idproducto')
+            ->where('idpedido','=',$pedido->idpedido)->get();
+        return $pedido;
+    }
+
+    function confirmarPedido(Request $request){
+        $pedido = Pedido::findOrFail($request->idPedido);
+        $pedido->ciCamarero = $request->ciCamarero;
+        $pedido->estado = "habilitado";
+        $pedido->save();
+        return array("response" => true);
+    }
+    function cancelarPedido(Request $request){
+        $pedido = Pedido::findOrFail($request->idPedido);
+        $pedido->ciCamarero = $request->ciCamarero;
+        $pedido->estado = "cancelado";
+        $pedido->save();
+        return array("response" => true);
+    }
+    function entregarPedido(Request $request){
+        $pedido = Pedido::findOrFail($request->idPedido);
+        //$pedido->ciCamarero = $request->ciCamarero;
+        $pedido->estado = "entregado";
+        $pedido->save();
+        return array("response" => true);
     }
 }

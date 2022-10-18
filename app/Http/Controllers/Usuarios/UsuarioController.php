@@ -106,8 +106,13 @@ class UsuarioController extends Controller
                         ->where('usuario.ci','=',$usuario->ci)
                         ->get()
                         ->first();
-            $data = array('data' => $datos, 'error' => []);
-            return $data;
+            if($datos->estado == 'habilitado'){
+                $data = array('data' => $datos, 'error' => []);
+                return $data;
+            }else{
+                $data = array('data'=>(object)null,'error'=>['Usuario Deshabilitado']);
+                return $data;    
+            }
         }else{
             $data = array('data'=>(object)null,'error'=>['Contraseña incorrecta']);
             return $data;
