@@ -151,6 +151,7 @@ Route::controller(PedidoController::class)->group(function(){
     Route::post('crearpedido/','crearPedido');
     Route::post('obtenerPedido/','obtenerPedido');
     Route::post('confirmarPedido/','confirmarPedido');
+    Route::post('cancelarPedido/','cancelarPedido');
 });
 
 Route::controller(MesaController::class)->group(function(){
