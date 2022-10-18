@@ -66,6 +66,8 @@ class IngredienteController extends Controller
         return $data;
     }
 
+    
+
     public function ingredienteAumentar($codingrediente){
         $ingrediente = Ingrediente::findOrFail($codingrediente);
         $ingrediente->cantidad =$ingrediente->cantidad+50;
