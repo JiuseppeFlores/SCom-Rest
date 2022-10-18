@@ -144,6 +144,13 @@ class ChefController extends Controller
         return $data;
     }
 
+    public function mostrarSolicita(){
+        $datos = DB::table('solicita')
+        ->get();
+        $data = array('data' => $datos,'error' => []);
+        return $data;
+    }
+
     public function chefSolicita($ci,$codIngrediente){
         $chef = Chef::findOrFail($ci);
         $ingrediente = Ingrediente::findOrFail($codIngrediente);

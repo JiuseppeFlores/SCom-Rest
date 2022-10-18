@@ -80,6 +80,7 @@ Route::controller(ChefController::class)->group(function(){
     Route::put('chef/{ci}', 'update');
     Route::delete('chef/{ci}', 'destroy');
     Route::put('chefSolicita/{ci}/{codIngrediente}','chefSolicita');
+    Route::get('mostrarSolicita/','mostrarSolicita');
 });
 
 Route::controller(IngredienteController::class)->group(function(){
