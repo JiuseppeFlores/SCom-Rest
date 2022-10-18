@@ -192,10 +192,9 @@ class PedidoController extends Controller
 
     function obtenerPedido(Request $request){
         $pedido = Pedido::findOrFail($request->idPedido);
-        $pedidoProducto = DB::table('pedido_producto')
+        $pedido->productos = DB::table('pedido_producto')
             ->join('producto','producto.idproducto','=','pedido_producto.idproducto')
             ->where('idpedido','=',$pedido->idpedido)->get();
-        //$productos = Producto::where('idproducto','=',$pedido->idpedido)->get();
-        return $pedidoProducto;
+        return $pedido;
     }
 }
