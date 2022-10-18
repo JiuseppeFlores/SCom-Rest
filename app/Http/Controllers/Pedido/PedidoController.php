@@ -197,4 +197,8 @@ class PedidoController extends Controller
             ->where('idpedido','=',$pedido->idpedido)->get();
         return $pedido;
     }
+
+    function confirmarPedido(Request $request){
+        return array("response" => true,"idPedido" => $request->idPedido, "ciCamarero" => $request->ciCamarero);
+    }
 }
