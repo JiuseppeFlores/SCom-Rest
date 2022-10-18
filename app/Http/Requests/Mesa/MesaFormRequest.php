@@ -27,8 +27,7 @@ class MesaFormRequest extends FormRequest
         return [
             'nroMesa' => ['numeric','required','digits_between:1,12',Rule::unique('mesa')->ignore($this->route('nroMesa'),'nroMesa')],
             'estado' => ['required','in:habilitado,deshabilitado'],
-            'idpedido' => ['numeric','required','digits_between:1,12'],
-            'ciCamarero' => ['numeric','required','digits_between:1,12']
+            'ciCamarero' => ['numeric','nullable','digits_between:1,12']
         ];
     }
     public function attributes()
@@ -36,7 +35,6 @@ class MesaFormRequest extends FormRequest
         return [
             'nroMesa' => 'Numero de mesa',
             'estado' => 'estado',
-            'idpedido' => 'codigo de el pedido',
             'ciCamarero' => 'CI de el Camarero'
         
         ];

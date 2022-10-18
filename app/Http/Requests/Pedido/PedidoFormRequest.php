@@ -33,7 +33,8 @@ class PedidoFormRequest extends FormRequest
             //'codfactura' => ['numeric','required','digits_between:1,12'],
             'codfactura' => ['numeric','nullable','digits_between:1,12'],
             //'ciChef' => ['numeric','required','digits_between:1,12']
-            'ciChef' => ['numeric','nullable','digits_between:1,12']
+            'ciChef' => ['numeric','nullable','digits_between:1,12'],
+            'idMesa' => ['numeric','nullable','digits_between:1,12']
         ];
     }
     public function attributes()
@@ -44,7 +45,8 @@ class PedidoFormRequest extends FormRequest
             'fecha' => 'fecha',
             'ciCamarero' => 'CI de el Camarero',
             'codfactura' => 'Condigo de la factura',
-            'ciChef' => 'CI de el Chef'
+            'ciChef' => 'CI de el Chef',
+            'idMesa' => 'Numero de Mesa'
         
         ];
     }

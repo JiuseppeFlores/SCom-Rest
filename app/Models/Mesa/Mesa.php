@@ -11,4 +11,10 @@ class Mesa extends Model
     protected $table = 'mesa';
     protected $primaryKey = 'nroMesa';
     public $timestamps = false;
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedido::class,'idMesa','nroMesa');
+    }
+
 }

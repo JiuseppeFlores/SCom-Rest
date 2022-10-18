@@ -28,4 +28,7 @@ public function facturas(){
 public function chefs(){
     return $this->belongsTo(Chef::class,'ciChef','ci');
 }
+public function mesas(){
+    return $this->belongsTo(Mesa::class,'nroMesa','idMesa');
+}
 }

@@ -32,8 +32,7 @@ class MesaController extends Controller
         $mesa = new Mesa();
         $mesa->nroMesa = $request->nroMesa;
         $mesa->estado = $request->estado;
-        $mesa->idpedido = $request->idpedido;
-        $mesa->ciCamarero = $request->ciCamarero;
+        $mesa->ciCamarero = 743843;
       
 
         $mesa->save();
@@ -71,8 +70,7 @@ class MesaController extends Controller
         $mesa = Mesa::findOrFail($nroMesa);
         $mesa->nroMesa = $request->nroMesa;
         $mesa->estado = $request->estado;
-        $mesa->idpedido = $request->idpedido;
-        $mesa->ciCamarero = $request->ciCamarero;
+        $mesa->ciCamarero = 743843;
      
 
         $mesa->save();
