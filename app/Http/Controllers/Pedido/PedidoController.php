@@ -212,4 +212,11 @@ class PedidoController extends Controller
         $pedido->save();
         return array("response" => true);
     }
+    function entregarPedido(Request $request){
+        $pedido = Pedido::findOrFail($request->idPedido);
+        //$pedido->ciCamarero = $request->ciCamarero;
+        $pedido->estado = "entregado";
+        $pedido->save();
+        return array("response" => true);
+    }
 }
